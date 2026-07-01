@@ -1,7 +1,8 @@
 # Skills Collection สำหรับ Hermes Agent
 
 > **Last Updated:** 2026-07-01  
-> **Categories:** [Figma](#figma-skills) • [Railway](#railway-skills) • [Matt Pocock](#matt-pocock-skills)
+> **Categories:** [Figma](#figma-skills) • [Railway](#railway-skills) • [Matt Pocock](#matt-pocock-skills)  
+> **Total Skills:** 37 (33 Figma + 1 Railway + 3 Matt Pocock)
 
 ---
 
@@ -32,11 +33,12 @@
 │   └── (11 official Figma Code Connect skills)
 ├── railway/               ← 1 skill (Railway)
 │   └── use-railway/
-└── mattpocock/            ← 2 skills (Matt Pocock)
+└── mattpocock/            ← 3 skills (Matt Pocock)
     ├── in-progress/
     │   └── handoff/
     └── productivity/
-        └── grill-me/
+        ├── grill-me/
+        └── teach/
 ```
 
 ---
@@ -83,7 +85,7 @@
 
 ---
 
-## Matt Pocock Skills (2 skills)
+## Matt Pocock Skills (3 skills)
 
 Source: [mattpocock/skills](https://github.com/mattpocock/skills/tree/733d312884b3878a9a9cff693c5886943753a741)
 
@@ -91,6 +93,7 @@ Source: [mattpocock/skills](https://github.com/mattpocock/skills/tree/733d312884
 |----------|-----------------|-------------|-----------------|
 | **In-Progress** | `handoff/` | `skills/in-progress/handoff/` | `handoff` |
 | **Productivity** | `grill-me/` | `skills/productivity/grill-me/` | `grill-me` |
+| **Productivity** | `teach/` | `skills/productivity/teach/` | `teach` |
 
 ---
 
@@ -100,8 +103,8 @@ Source: [mattpocock/skills](https://github.com/mattpocock/skills/tree/733d312884
 |----------|-------------|--------------|
 | **Figma** | 11 | **33** |
 | **Railway** | 1 | **1** |
-| **Matt Pocock** | 2 | **2** |
-| **รวม** | **14** | **36** |
+| **Matt Pocock** | 3 | **3** |
+| **รวม** | **15** | **37** |
 
 ---
 
