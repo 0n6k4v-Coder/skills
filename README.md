@@ -1,8 +1,8 @@
 # Skills Collection สำหรับ Hermes Agent
 
 > **Last Updated:** 2026-07-01  
-> **Categories:** [Figma](#figma-skills) • [Railway](#railway-skills) • [Matt Pocock](#matt-pocock-skills)  
-> **Total Skills:** 37 (33 Figma + 1 Railway + 3 Matt Pocock)
+> **Categories:** [Figma](#figma-skills) • [Railway](#railway-skills) • [Matt Pocock](#matt-pocock-skills) • [0n6k4v](#0n6k4v-skills)  
+> **Total Skills:** 38 (33 Figma + 1 Railway + 3 Matt Pocock + 1 0n6k4v)
 
 ---
 
@@ -39,6 +39,8 @@
     └── productivity/
         ├── grill-me/
         └── teach/
+└── 0n6k4v/                ← 1 skill (Git Automation)
+    └── git-auto-commit-push/
 ```
 
 ---
@@ -93,7 +95,17 @@ Source: [mattpocock/skills](https://github.com/mattpocock/skills/tree/733d312884
 |----------|-----------------|-------------|-----------------|
 | **In-Progress** | `handoff/` | `skills/in-progress/handoff/` | `handoff` |
 | **Productivity** | `grill-me/` | `skills/productivity/grill-me/` | `grill-me` |
-| **Productivity** | `teach/` | `skills/productivity/teach/` | `teach` |
+| **รวม** | **15** | **37** |
+
+---
+
+## 0n6k4v Skills (1 skill)
+
+Source: [0n6k4v/git-auto-commit-push](https://github.com/0n6k4v/git-auto-commit-push)
+
+| Category | Skill Directory | Source Path | Skills Included |
+|----------|-----------------|-------------|-----------------|
+| **Git Automation** | `git-auto-commit-push/` | (root) | `git-auto-commit-push` |
 
 ---
 
@@ -104,7 +116,8 @@ Source: [mattpocock/skills](https://github.com/mattpocock/skills/tree/733d312884
 | **Figma** | 11 | **33** |
 | **Railway** | 1 | **1** |
 | **Matt Pocock** | 3 | **3** |
-| **รวม** | **15** | **37** |
+| **0n6k4v** | 1 | **1** |
+| **รวม** | **16** | **38** |
 
 ---
 
