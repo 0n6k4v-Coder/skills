@@ -1,8 +1,8 @@
 # Skills Collection สำหรับ Hermes Agent
 
-> **Last Updated:** 2026-07-01  
+> **Last Updated:** 2026-07-03  
 > **Categories:** [Figma](#figma-skills) • [Railway](#railway-skills) • [Matt Pocock](#matt-pocock-skills) • [0n6k4v](#0n6k4v-skills)  
-> **Total Skills:** 38 (33 Figma + 1 Railway + 3 Matt Pocock + 1 0n6k4v)
+> **Total Skills:** 39 (33 Figma + 1 Railway + 3 Matt Pocock + 2 0n6k4v)
 
 ---
 
@@ -20,7 +20,7 @@
 ```
 .agents/skills/
 ├── README.md              ← ไฟล์นี้
-├── figma/                 ← 33 skills (Figma)
+├── figma/                 ← 33 skills
 │   ├── augment-multi-agent-figma/
 │   ├── component-contracts-figma/
 │   ├── ebentley-figma/
@@ -31,16 +31,17 @@
 │   ├── sync-figma-token/
 │   └── uSpec/
 │   └── (11 official Figma Code Connect skills)
-├── railway/               ← 1 skill (Railway)
+├── railway/               ← 1 skill
 │   └── use-railway/
-└── mattpocock/            ← 3 skills (Matt Pocock)
+└── mattpocock/            ← 3 skills
     ├── in-progress/
     │   └── handoff/
     └── productivity/
         ├── grill-me/
         └── teach/
-└── 0n6k4v/                ← 1 skill (Git Automation)
-    └── git-auto-commit-push/
+└── 0n6k4v/                ← 2 skills
+    ├── git-auto-commit-push/
+    └── ai-agent-communication-protocol/
 ```
 
 ---
@@ -99,13 +100,12 @@ Source: [mattpocock/skills](https://github.com/mattpocock/skills/tree/733d312884
 
 ---
 
-## 0n6k4v Skills (1 skill)
-
-Source: [0n6k4v/git-auto-commit-push](https://github.com/0n6k4v/git-auto-commit-push)
+## 0n6k4v Skills (2 skills)
 
 | Category | Skill Directory | Source Path | Skills Included |
 |----------|-----------------|-------------|-----------------|
-| **Git Automation** | `git-auto-commit-push/` | (root) | `git-auto-commit-push` |
+| **Git Automation** | `git-auto-commit-push/` | [0n6k4v/git-auto-commit-push](https://github.com/0n6k4v/git-auto-commit-push) | `git-auto-commit-push` |
+| **AI Agent Communication** | `ai-agent-communication-protocol/` | [0n6k4v/skills/ai-agent-communication-protocol](https://github.com/0n6k4v/skills/tree/main/ai-agent-communication-protocol) | `ai-agent-communication-protocol` |
 
 ---
 
@@ -116,8 +116,8 @@ Source: [0n6k4v/git-auto-commit-push](https://github.com/0n6k4v/git-auto-commit-
 | **Figma** | 11 | **33** |
 | **Railway** | 1 | **1** |
 | **Matt Pocock** | 3 | **3** |
-| **0n6k4v** | 1 | **1** |
-| **รวม** | **16** | **38** |
+| **0n6k4v** | 2 | **2** |
+| **รวม** | **17** | **39** |
 
 ---
 
