@@ -1,8 +1,8 @@
 # Skills Collection สำหรับ Hermes Agent
 
-> **Last Updated:** 2026-07-03  
+> **Last Updated:** 2026-07-05  
 > **Categories:** [Figma](#figma-skills) • [Railway](#railway-skills) • [Matt Pocock](#matt-pocock-skills) • [0n6k4v](#0n6k4v-skills)  
-> **Total Skills:** 39 (33 Figma + 1 Railway + 3 Matt Pocock + 2 0n6k4v)
+> **Total Skills:** 40 (33 Figma + 1 Railway + 3 Matt Pocock + 3 0n6k4v)
 
 ---
 
@@ -12,6 +12,7 @@
 |--------|-------|---------|
 | **Figma Community Skills** | <https://www.figma.com/community/skills> | รวม skills จากหลาย repository |
 | **GitHub Organizations** | Various | ดูรายละเอียดในตารางด้านล่าง |
+| **0n6k4v Project Skills** |  | |
 
 ---
 
@@ -39,9 +40,10 @@
     └── productivity/
         ├── grill-me/
         └── teach/
-└── 0n6k4v/                ← 2 skills
+└── 0n6k4v/                ← 3 skills
     ├── git-auto-commit-push/
-    └── ai-agent-communication-protocol/
+    ├── ai-agent-communication-protocol/
+    └── debugging/
 ```
 
 ---
@@ -96,16 +98,18 @@ Source: [mattpocock/skills](https://github.com/mattpocock/skills/tree/733d312884
 |----------|-----------------|-------------|-----------------|
 | **In-Progress** | `handoff/` | `skills/in-progress/handoff/` | `handoff` |
 | **Productivity** | `grill-me/` | `skills/productivity/grill-me/` | `grill-me` |
-| **รวม** | **15** | **37** |
+| **Productivity** | `teach/` | `skills/productivity/teach/` | `teach` |
+| **รวม** | **3** | **3** |
 
 ---
 
-## 0n6k4v Skills (2 skills)
+## 0n6k4v Skills (3 skills)
 
 | Category | Skill Directory | Source Path | Skills Included |
 |----------|-----------------|-------------|-----------------|
-| **Git Automation** | `git-auto-commit-push/` | [0n6k4v/git-auto-commit-push](https://github.com/0n6k4v/git-auto-commit-push) | `git-auto-commit-push` |
-| **AI Agent Communication** | `ai-agent-communication-protocol/` | [0n6k4v/skills/ai-agent-communication-protocol](https://github.com/0n6k4v/skills/tree/main/ai-agent-communication-protocol) | `ai-agent-communication-protocol` |
+| **Git Automation** | `git-auto-commit-push/` | | `git-auto-commit-push` |
+| **AI Agent Communication** | `ai-agent-communication-protocol/` | | `ai-agent-communication-protocol` |
+| **Debugging** | `debugging/` | | `debugging` |
 
 ---
 
@@ -116,8 +120,8 @@ Source: [mattpocock/skills](https://github.com/mattpocock/skills/tree/733d312884
 | **Figma** | 11 | **33** |
 | **Railway** | 1 | **1** |
 | **Matt Pocock** | 3 | **3** |
-| **0n6k4v** | 2 | **2** |
-| **รวม** | **17** | **39** |
+| **0n6k4v** | 3 | **3** |
+| **รวม** | **18** | **40** |
 
 ---
 
