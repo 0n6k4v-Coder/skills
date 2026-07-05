@@ -1,8 +1,8 @@
 # Skills Collection สำหรับ Hermes Agent
 
 > **Last Updated:** 2026-07-05  
-> **Categories:** [Figma](#figma-skills) • [Railway](#railway-skills) • [Matt Pocock](#matt-pocock-skills) • [0n6k4v](#0n6k4v-skills)  
-> **Total Skills:** 40 (33 Figma + 1 Railway + 3 Matt Pocock + 3 0n6k4v)
+> **Categories:** [Figma](#figma-skills) • [Railway](#railway-skills) • [Matt Pocock](#matt-pocock-skills) • [0n6k4v](#0n6k4v-skills) • [Playwright CLI](#playwright-cli-skills)  
+> **Total Skills:** 41 (33 Figma + 1 Railway + 3 Matt Pocock + 3 0n6k4v + 1 Playwright CLI)
 
 ---
 
@@ -12,7 +12,8 @@
 |--------|-------|---------|
 | **Figma Community Skills** | <https://www.figma.com/community/skills> | รวม skills จากหลาย repository |
 | **GitHub Organizations** | Various | ดูรายละเอียดในตารางด้านล่าง |
-| **0n6k4v Project Skills** |  | |
+| **0n6k4v Project Skills** |  |  |
+| **Playwright CLI** | <https://github.com/microsoft/playwright-cli/tree/main/skills/playwright-cli> | Browser automation CLI skills |
 
 ---
 
@@ -21,6 +22,7 @@
 ```
 .agents/skills/
 ├── README.md              ← ไฟล์นี้
+│ 
 ├── figma/                 ← 33 skills
 │   ├── augment-multi-agent-figma/
 │   ├── component-contracts-figma/
@@ -32,18 +34,25 @@
 │   ├── sync-figma-token/
 │   └── uSpec/
 │   └── (11 official Figma Code Connect skills)
+│ 
 ├── railway/               ← 1 skill
 │   └── use-railway/
-└── mattpocock/            ← 3 skills
-    ├── in-progress/
-    │   └── handoff/
-    └── productivity/
-        ├── grill-me/
-        └── teach/
-└── 0n6k4v/                ← 3 skills
-    ├── git-auto-commit-push/
-    ├── ai-agent-communication-protocol/
-    └── debugging/
+│ 
+├── mattpocock/            ← 3 skills
+│    ├── in-progress/
+│    │   └── handoff/
+│    └── productivity/
+│        ├── grill-me/
+│        └── teach/
+│ 
+├── 0n6k4v/                ← 3 skills
+│    ├── git-auto-commit-push/
+│    ├── ai-agent-communication-protocol/
+│    └── debugging/
+│ 
+└── playwright-cli/        ← 1 skill
+     ├── SKILL.md
+     └── references/
 ```
 
 ---
@@ -113,6 +122,16 @@ Source: [mattpocock/skills](https://github.com/mattpocock/skills/tree/733d312884
 
 ---
 
+## Playwright CLI Skills (1 skill)
+
+Source: [microsoft/playwright-cli](https://github.com/microsoft/playwright-cli/tree/main/skills/playwright-cli)
+
+| Skill Directory | Source Path | Skills Included |
+|-----------------|-------------|-----------------|
+| `playwright-cli/` | `skills/playwright-cli/` | `playwright-cli` |
+
+---
+
 ## สรุปจำนวน Skills
 
 | Category | Directories | Total Skills |
@@ -121,7 +140,8 @@ Source: [mattpocock/skills](https://github.com/mattpocock/skills/tree/733d312884
 | **Railway** | 1 | **1** |
 | **Matt Pocock** | 3 | **3** |
 | **0n6k4v** | 3 | **3** |
-| **รวม** | **18** | **40** |
+| **Playwright CLI** | 1 | **1** |
+| **รวม** | **19** | **41** |
 
 ---
 
