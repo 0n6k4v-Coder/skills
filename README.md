@@ -1,19 +1,20 @@
 # Skills Collection สำหรับ Hermes Agent
 
-> **Last Updated:** 2026-07-05  
-> **Categories:** [Figma](#figma-skills) • [Railway](#railway-skills) • [Matt Pocock](#matt-pocock-skills) • [0n6k4v](#0n6k4v-skills) • [Playwright CLI](#playwright-cli-skills)  
-> **Total Skills:** 41 (33 Figma + 1 Railway + 3 Matt Pocock + 3 0n6k4v + 1 Playwright CLI)
+> **Last Updated:** 2026-07-06          
+> **Categories:** [Figma](#figma-skills) • [Railway](#railway-skills) • [Matt Pocock](#matt-pocock-skills) • [0n6k4v](#0n6k4v-skills) • [Playwright CLI](#playwright-cli-skills) • [Google](#google-skills)       
+> **Total Skills:** 43 (33 Figma + 1 Railway + 3 Matt Pocock + 3 0n6k4v + 1 Playwright CLI + 2 Google)
 
 ---
 
-## แหล่งที่มา (Sources)
+## แหลงที่มา (Sources)
 
 | แหล่ง | ลิงก์ | หมายเหตุ |
-|--------|-------|---------|
+|--------|-------|----------|
 | **Figma Community Skills** | <https://www.figma.com/community/skills> | รวม skills จากหลาย repository |
 | **GitHub Organizations** | Various | ดูรายละเอียดในตารางด้านล่าง |
 | **0n6k4v Project Skills** |  |  |
 | **Playwright CLI** | <https://github.com/microsoft/playwright-cli/tree/main/skills/playwright-cli> | Browser automation CLI skills |
+| **Google** | <https://github.com/GoogleChrome/modern-web-guidance> | Modern web development & Chrome extensions |
 
 ---
 
@@ -22,7 +23,7 @@
 ```
 .agents/skills/
 ├── README.md              ← ไฟล์นี้
-│ 
+│
 ├── figma/                 ← 33 skills
 │   ├── augment-multi-agent-figma/
 │   ├── component-contracts-figma/
@@ -34,22 +35,26 @@
 │   ├── sync-figma-token/
 │   └── uSpec/
 │   └── (11 official Figma Code Connect skills)
-│ 
+│
+├── google/                ← 2 skills
+│   ├── chrome-extensions/
+│   └── modern-web-guidance/
+│
 ├── railway/               ← 1 skill
 │   └── use-railway/
-│ 
+│
 ├── mattpocock/            ← 3 skills
 │    ├── in-progress/
 │    │   └── handoff/
 │    └── productivity/
 │        ├── grill-me/
 │        └── teach/
-│ 
-├── 0n6k4v/                ← 3 skills
+│
+├── 0n6k4v/               ← 3 skills
 │    ├── git-auto-commit-push/
 │    ├── ai-agent-communication-protocol/
 │    └── debugging/
-│ 
+│
 └── playwright-cli/        ← 1 skill
      ├── SKILL.md
      └── references/
@@ -108,7 +113,6 @@ Source: [mattpocock/skills](https://github.com/mattpocock/skills/tree/733d312884
 | **In-Progress** | `handoff/` | `skills/in-progress/handoff/` | `handoff` |
 | **Productivity** | `grill-me/` | `skills/productivity/grill-me/` | `grill-me` |
 | **Productivity** | `teach/` | `skills/productivity/teach/` | `teach` |
-| **รวม** | **3** | **3** |
 
 ---
 
@@ -132,6 +136,17 @@ Source: [microsoft/playwright-cli](https://github.com/microsoft/playwright-cli/t
 
 ---
 
+## Google Skills (2 skills)
+
+Source: [GoogleChrome/modern-web-guidance](https://github.com/GoogleChrome/modern-web-guidance)
+
+| Skill Directory | Skills Included |
+|-----------------|-----------------|
+| `chrome-extensions/` | `chrome-extensions` - Build และ publish Chrome Extensions ด้วย Manifest V3 |
+| `modern-web-guidance/` | `modern-web-guidance` - Search คำแนะนำ best practices สำหรับ web APIs สมัยใหม่ |
+
+---
+
 ## สรุปจำนวน Skills
 
 | Category | Directories | Total Skills |
@@ -141,7 +156,8 @@ Source: [microsoft/playwright-cli](https://github.com/microsoft/playwright-cli/t
 | **Matt Pocock** | 3 | **3** |
 | **0n6k4v** | 3 | **3** |
 | **Playwright CLI** | 1 | **1** |
-| **รวม** | **19** | **41** |
+| **Google** | 2 | **2** |
+| **รวม** | **21** | **43** |
 
 ---
 
