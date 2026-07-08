@@ -1,20 +1,24 @@
 # Skills Collection สำหรับ Hermes Agent
 
-> **Last Updated:** 2026-07-06          
-> **Categories:** [Figma](#figma-skills) • [Railway](#railway-skills) • [Matt Pocock](#matt-pocock-skills) • [0n6k4v](#0n6k4v-skills) • [Playwright CLI](#playwright-cli-skills) • [Google](#google-skills)       
-> **Total Skills:** 43 (33 Figma + 1 Railway + 3 Matt Pocock + 3 0n6k4v + 1 Playwright CLI + 2 Google)
+> **Last Updated:** 2026-07-08          \
+> **Categories:** [Figma](#figma-skills) • [Railway](#railway-skills) • [Matt Pocock](#matt-pocock-skills) • [0n6k4v](#0n6k4v-skills) • [Playwright CLI](#playwright-cli-skills) • [Google](#google-skills) • [Next.js](#nextjs-skills)       \
+> **Total Skills:** 48 (35 Figma + 1 Railway + 3 Matt Pocock + 3 0n6k4v + 1 Playwright CLI + 2 Google + 3 Next.js)
 
 ---
 
-## แหลงที่มา (Sources)
+## แหลงที่มา
 
 | แหล่ง | ลิงก์ | หมายเหตุ |
 |--------|-------|----------|
 | **Figma Community Skills** | <https://www.figma.com/community/skills> | รวม skills จากหลาย repository |
-| **GitHub Organizations** | Various | ดูรายละเอียดในตารางด้านล่าง |
-| **0n6k4v Project Skills** |  |  |
+| **Figma Official (Code Connect)** | <https://github.com/figma/mcp-server-guide> | 11 official skills อยู่ใต้ `figma/ebentley-figma/skills/` |
+| **GitHub Organizations** | Various (vercel/next.js, figma, mattpocock, railwayapp, microsoft, GoogleChrome) | ดูรายละเอียดในตารางด้านล่าง |
+| **0n6k4v Project Skills** | <https://github.com/0n6k4v> | 3 skills (git-auto-commit-push, ai-agent-communication-protocol, debugging) |
+| **Railway** | <https://github.com/railwayapp/railway-skills> | `use-railway` skill |
+| **Matt Pocock** | <https://github.com/mattpocock/skills> | 3 skills (handoff, grill-me, teach) |
 | **Playwright CLI** | <https://github.com/microsoft/playwright-cli/tree/main/skills/playwright-cli> | Browser automation CLI skills |
 | **Google** | <https://github.com/GoogleChrome/modern-web-guidance> | Modern web development & Chrome extensions |
+| **Next.js (Vercel)** | <https://github.com/vercel/next.js/tree/canary/skills> | 3 skills (canary branch) |
 
 ---
 
@@ -24,18 +28,36 @@
 .agents/skills/
 ├── README.md              ← ไฟล์นี้
 │
-├── figma/                 ← 33 skills
+├── figma/                 ← 35 skills
 │   ├── augment-multi-agent-figma/
 │   ├── component-contracts-figma/
+│   │    ├── cc-figma-component/
+│   │    └── cc-figma-tokens/
 │   ├── ebentley-figma/
+│   │    ├── workflow-skills/
+│   │    │    └── generate-project-plan/
+│   │    └── skills/              ← 11 official Figma Code Connect skills
+│   │         ├── figma-code-connect/
+│   │         ├── figma-create-new-file/
+│   │         ├── figma-generate-design/
+│   │         ├── figma-generate-diagram/
+│   │         ├── figma-generate-library/
+│   │         ├── figma-implement-motion/
+│   │         ├── figma-swiftui/
+│   │         ├── figma-use/
+│   │         ├── figma-use-figjam/
+│   │         ├── figma-use-motion/
+│   │         └── figma-use-slides/
 │   ├── edenspiekermann/
+│   │    ├── apply-design-system/
+│   │    ├── audit-design-system/
+│   │    └── fix-design-system-finding/
 │   ├── edit-figma-design/
 │   ├── prototype-to-figma-skill/
 │   ├── rad-spacing/
 │   ├── sync-figma-token/
-│   └── uSpec/
-│   └── (11 official Figma Code Connect skills)
-│
+│   └── uSpec/              ← 13 skills (create-*/extract-*/firstrun)
+
 ├── google/                ← 2 skills
 │   ├── chrome-extensions/
 │   └── modern-web-guidance/
@@ -55,16 +77,28 @@
 │    ├── ai-agent-communication-protocol/
 │    └── debugging/
 │
-└── playwright-cli/        ← 1 skill
-     ├── SKILL.md
-     └── references/
+├── playwright-cli/        ← 1 skill
+│    ├── SKILL.md
+│    └── references/
+│
+└── next.js/               ← 3 skills
+     ├── next-cache-components-adoption/
+     │    ├── SKILL.md
+     │    └── references/
+     │         └── per-page-decisions.md
+     ├── next-cache-components-optimizer/
+     │    ├── SKILL.md
+     │    ├── instant-nav-loop.md
+     │    └── ppr-loop.md
+     └── next-dev-loop/
+          └── SKILL.md
 ```
 
 ---
 
-## Figma Skills (33 skills)
+## Figma Skills (35 skills)
 
-### Community & External Skills (22 skills)
+### Community & External Skills (24 skills)
 
 | Skill Directory | Source Repository | Skills Included |
 |-----------------|-------------------|-----------------|
@@ -147,17 +181,30 @@ Source: [GoogleChrome/modern-web-guidance](https://github.com/GoogleChrome/moder
 
 ---
 
+## Next.js Skills (3 skills)
+
+Source: [vercel/next.js](https://github.com/vercel/next.js/tree/canary/skills) (canary branch)
+
+| Skill Directory | Source Path | Skills Included |
+|-----------------|-------------|-----------------|
+| `next-cache-components-adoption/` | `skills/next-cache-components-adoption/` | `next-cache-components-adoption` - คำแนะนำการนำ Cache Components ไปใช้ต่อหน้า (per-page decisions) |
+| `next-cache-components-optimizer/` | `skills/next-cache-components-optimizer/` | `next-cache-components-optimizer` - ปรับแต่ง Cache Components (instant-nav-loop, ppr-loop) |
+| `next-dev-loop/` | `skills/next-dev-loop/` | `next-dev-loop` - Dev loop workflow สำหรับ Next.js |
+
+---
+
 ## สรุปจำนวน Skills
 
 | Category | Directories | Total Skills |
 |----------|-------------|--------------|
-| **Figma** | 11 | **33** |
+| **Figma** | 11 | **35** |
 | **Railway** | 1 | **1** |
 | **Matt Pocock** | 3 | **3** |
 | **0n6k4v** | 3 | **3** |
 | **Playwright CLI** | 1 | **1** |
 | **Google** | 2 | **2** |
-| **รวม** | **21** | **43** |
+| **Next.js** | 3 | **3** |
+| **รวม** | **24** | **48** |
 
 ---
 
