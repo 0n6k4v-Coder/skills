@@ -82,6 +82,9 @@ Generated scripts may be pasted directly into the Figma Developer Console for in
 For **Figma Developer Console execution**:
 
 - Do not call `figma.closePlugin()`.
+- Keep all Figma API calls that return Promises inside the same awaited async execution flow.
+- Await every async Figma operation before continuing to dependent work or reporting completion.
+- Do not start detached async Figma work that can outlive the main execution flow.
 - Do not close or terminate the execution context while asynchronous work is still pending.
 - Finish by returning normally or logging completion with `console.log()`.
 - Treat the Console as an interactive debugging environment; do not add plugin-lifecycle cleanup intended only for a standalone plugin command.
@@ -92,6 +95,14 @@ For a **standalone Figma Plugin command**:
 - Do not apply the Console rule blindly to a standalone plugin.
 
 The execution target must be inferred from the requested output. When the user asks for a script to paste into the Developer Console, generate a Console-safe script.
+
+## Document traversal
+
+- Do not call `figma.loadAllPagesAsync()` as generic initialization.
+- Do not add document-wide page loading or traversal merely as a familiar Figma pattern.
+- Use the narrowest traversal scope that satisfies the task, such as `figma.currentPage` or a known local subtree.
+- Use `figma.loadAllPagesAsync()` only when the implementation explicitly requires multi-page or document-wide traversal and the execution environment supports that behavior.
+- Do not infer a need for document-wide traversal merely because lookup or reconciliation is being performed.
 
 ## Text
 
@@ -117,6 +128,8 @@ Before completing a build, verify:
 - vectors/images/assets remain editable and attached to the intended nodes;
 - existing correct nodes were preserved;
 - no fallback placeholder hides an unsupported or unresolved mapping;
+- all async Figma operations were awaited and remain within the active execution flow;
+- document-wide traversal was not introduced unless required by the target;
 - execution lifecycle matches the target environment;
 - Console-targeted scripts do not call `figma.closePlugin()`.
 
