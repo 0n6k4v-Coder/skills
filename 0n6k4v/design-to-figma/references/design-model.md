@@ -1,25 +1,37 @@
 # Design Model
 
-The bridge consumes a normalized design tree. Keep this representation independent of HTML, React, Vue, CSS, Tailwind, or any AI model.
+The Design-to-Figma bridge consumes a normalized design tree.
+
+The model is independent of HTML, CSS, React, Vue, Tailwind, or any AI model.
 
 ## Node contract
 
-Each target Figma node is represented by one object:
+Every distinct target Figma node is represented by one object.
 
-```json
-{
-  "id": "screen",
-  "type": "FRAME",
-  "name": "Screen",
-  "children": []
-}
-```
+Required:
 
-`id` is a stable bridge identity, not a Figma node ID.
+- `type`
+- `name`
 
-## Supported types
+Recommended:
 
-The executor recognizes the following normalized types:
+- `id` — stable bridge identity, not a Figma node ID
+- `children`
+
+Optional properties describe only source facts that matter to the target:
+
+- `x`, `y`, `width`, `height`
+- `visible`, `opacity`, `rotation`, `blendMode`
+- `fills`, `strokes`, `effects`, `radius`
+- `layout`, `sizing`
+- `typography`, `content`
+- `svg`, `image`
+- `variableBindings`
+- `componentId`, `componentProperties`
+
+## Node types
+
+Supported normalized types:
 
 - `FRAME`
 - `GROUP`
@@ -32,53 +44,42 @@ The executor recognizes the following normalized types:
 - `COMPONENT_SET`
 - `INSTANCE`
 
-Use a type only when the source actually calls for that node semantics.
+Resolve the type from actual source structure and semantics.
 
-## Common fields
+## Hierarchy
 
-Optional fields may include:
+Every structurally distinct source node must appear explicitly in `children`.
 
-- `id`
-- `type`
-- `name`
-- `children`
-- `visible`
-- `opacity`
-- `x`
-- `y`
-- `width`
-- `height`
-- `sizing`
-- `layout`
-- `fills`
-- `strokes`
-- `strokeWeight`
-- `radius`
-- `effects`
-- `typography`
-- `content`
-- `svg`
-- `image`
-- `variableBindings`
-- `component`
+Do not encode child nodes in a text string, asset field, SVG, or other opaque payload.
 
-Do not put child elements into `content`, `svg`, or an asset field. Children belong in `children` when they are distinct source nodes.
+Parent and child nodes are separate nodes whenever the source represents them separately.
+
+## Text boundaries
+
+Atomicity follows the source node structure, not semantic complexity.
+
+A single target text layer remains one `TEXT` node even when its characters contain multiple labels or inline semantic values.
+
+Do not split one text node into multiple nodes unless the source actually contains multiple text nodes or separately styled/positioned text.
+
+## Optional content
+
+Optional content is not optional structure.
+
+Example: a required banner component remains a required node even when its image content is empty or user-supplied later.
 
 ## Layout
 
-Use normalized values that map directly to current Figma Auto Layout concepts:
+Normalized layout values should describe intent rather than CSS syntax.
+
+Example:
 
 ```json
 {
   "layout": {
     "mode": "VERTICAL",
     "gap": 8,
-    "padding": {
-      "top": 12,
-      "right": 12,
-      "bottom": 12,
-      "left": 12
-    },
+    "padding": {"top": 12, "right": 12, "bottom": 12, "left": 12},
     "primaryAxisAlign": "MIN",
     "counterAxisAlign": "MIN",
     "primaryAxisSizing": "AUTO",
@@ -88,118 +89,74 @@ Use normalized values that map directly to current Figma Auto Layout concepts:
 }
 ```
 
-Supported normalized layout modes:
-
-- `NONE`
-- `HORIZONTAL`
-- `VERTICAL`
-- `GRID`
-
-Do not translate CSS layout names blindly. Resolve the behavior to the corresponding Figma property before execution.
+Use `GRID` only when the source actually requires Figma Grid Auto Layout behavior.
 
 ## Sizing
 
-Use:
+Supported normalized values:
 
 - `FIXED`
 - `HUG`
 - `FILL`
 
-Only use sizing values valid for the node and its parent context. In particular, `FILL` is an Auto Layout child sizing behavior, not a generic width keyword.
+`FILL` is contextual Auto Layout sizing and must only be used where valid for the target node and parent.
 
 ## Typography
 
 Example:
 
 ```json
-{
-  "typography": {
-    "family": "Inter",
-    "style": "Regular",
-    "size": 14,
-    "lineHeight": { "unit": "AUTO" },
-    "letterSpacing": { "unit": "PIXELS", "value": 0 },
-    "horizontalAlign": "LEFT",
-    "verticalAlign": "TOP"
-  }
-}
+{"typography":{"family":"Inter","style":"Regular","size":14,"lineHeight":{"unit":"AUTO"},"letterSpacing":{"unit":"PIXELS","value":0},"horizontalAlign":"LEFT","verticalAlign":"TOP","textCase":"ORIGINAL","textDecoration":"NONE","autoResize":"NONE"}}
 ```
 
-Font-dependent text writes require font loading before mutation.
+Fonts are loaded by the executor before font-dependent text mutation.
 
 ## Paints
 
-Represent a solid paint as:
+Solid paint example:
 
 ```json
-{
-  "type": "SOLID",
-  "color": "#F9F9F9",
-  "opacity": 1
-}
+{"type":"SOLID","color":"#F9F9F9","opacity":1}
 ```
 
-The executor may support additional paint representations as it evolves. When a variable binding is supplied, prefer the variable binding over duplicating the token value as a hard-coded paint.
+For variable-backed colors, prefer `variableBindings` rather than duplicating a hard-coded value.
 
 ## Variables
 
-Use:
+Example:
 
 ```json
-{
-  "variableBindings": {
-    "fills": {
-      "collection": "salacinefy",
-      "name": "surface/subtle"
-    }
-  }
-}
+{"variableBindings":{"fills":{"collection":"Primitives","name":"color/background"}}}
 ```
 
-The collection/name pair is the logical reference. Resolve it to a real local `Variable` object before binding.
+Variables are resolved before dependent bindings.
 
-## Assets
+## Components
 
-For SVG source, use:
+Component:
 
 ```json
-{
-  "type": "VECTOR",
-  "svg": "<svg ...>...</svg>"
-}
+{"type":"COMPONENT","id":"button-default","name":"Button=Default","children":[]}
 ```
 
-For raster content, represent the source image separately from the node's paint configuration so the executor can attach image data without pretending that an image is a child text/vector node.
-
-## Components and instances
-
-A reusable component is represented explicitly:
+Component Set:
 
 ```json
-{
-  "type": "COMPONENT",
-  "name": "Button"
-}
+{"type":"COMPONENT_SET","name":"Button","children":[{"type":"COMPONENT","id":"button-default","name":"Button=Default"},{"type":"COMPONENT","id":"button-disabled","name":"Button=Disabled"}]}
 ```
 
-An instance must reference a real component:
+Instance:
 
 ```json
-{
-  "type": "INSTANCE",
-  "name": "DeleteButton",
-  "componentId": "button-component-id"
-}
+{"type":"INSTANCE","name":"Delete Button","componentId":"button-default"}
 ```
 
-A component set is a real Figma component set containing component children. Do not encode a component set as a generic frame.
+An Instance must resolve to a real Figma Component.
 
-## Reconciliation identity
+## Bridge identity
 
-Store the stable source identity as plugin data under:
+Use plugin data key: `design-to-figma:id`
 
-`design-to-figma:id`
+The value is the source model's stable ID.
 
-Figma's own node ID is not the source identity.
-
-When an update supplies the same bridge ID, reconcile that node instead of creating a duplicate.
+Never use the generated Figma node ID as the source identity.
