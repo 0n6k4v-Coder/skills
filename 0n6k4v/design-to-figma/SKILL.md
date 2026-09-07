@@ -1,188 +1,31 @@
 ---
 name: design-to-figma
-description: Converts structured UI/design specifications into faithful, editable Figma designs through the current Figma Plugin API. Use when an AI agent must inspect, plan, generate, execute, synchronize, or validate Figma nodes while preserving the source design's actual structure, semantics, layout, assets, components, and variables.
+description: Converts structured UI/design specifications into faithful, editable Figma designs through the current Figma Plugin API. Use when an AI agent must create, reconstruct, synchronize, or refine Figma nodes while preserving the source design's actual structure, semantics, layout, assets, components, and variables.
 ---
 
 # Design to Figma
 
 Turn a source design representation into a faithful, editable Figma document.
 
-This skill is the **execution layer**. It can be used by Gemini, Claude, GPT, Codex, or another AI. It is not a UX recommendation planner and must not invent product or visual decisions that are absent from the source.
+This skill is the **execution layer**. It is not a UX recommendation planner and must not invent product or visual decisions that are absent from the source.
 
-## Primary workflow
+The source may be JSON, HTML/CSS, a component specification, a design-token representation, or another structured UI description.
 
-For a planning-to-execution workflow, produce both artifacts from the same analysis:
+## Operating model
 
-`SOURCE → INSPECT → DIFF → PLAN → DESIGN MODEL → SCRIPT → EXECUTE → CROSS-CHECK`
+Use this sequence:
 
-The two primary outputs are:
+`SOURCE → INSPECT → DIFF → RESOLVE → ORDER → BUILD → VALIDATE`
 
-1. **Implementation Plan** — human-readable atomic specification used as the contract and post-execution checklist.
-2. **Executable Figma Script** — runnable code that implements the same work in Figma.
+1. Inspect the source and identify the actual node hierarchy.
+2. Inspect the existing Figma document when synchronizing or refining.
+3. Compute the source-to-Figma delta.
+4. Resolve one unambiguous Figma node type for every source node.
+5. Order work by dependency: variables/assets → containers → children → properties → bindings → final layout adjustments.
+6. Execute deterministic node operations.
+7. Validate structure, properties, and editability against the source.
 
-The Plan and Script must describe the same target state. Neither is allowed to introduce work absent from the other.
-
-## Planning rules
-
-Preserve the existing planning behavior:
-
-- Every distinct canvas/Figma node in the TARGET is one independent implementation step.
-- Parent and child nodes are separate steps.
-- Every missing target node has its own step.
-- Atomize according to the TARGET's actual node structure, not the semantic complexity of its content.
-- Do not merge structurally distinct target elements into one node.
-- Do not split a single target text node unless the target clearly represents separate text nodes.
-- Semantic role must match the actual node.
-- Auto Layout is a property, never a substitute for node creation.
-- Missing Variable is its own step and must precede dependent nodes.
-- `MISSING → Create`.
-- `INCORRECT → Modify only actual property deltas`.
-- `COMPLETE → No step`.
-- Required elements always exist. Optionality applies to their content, data, or user usage.
-- Every step contains exactly one item with one resolved Node Type.
-- Do not recreate correct nodes, group unrelated work, or leave required work implicit.
-
-The planning artifact must contain:
-
-- `Current State`
-- `Target State Overview`
-- `Implementation Steps`
-- `Variable` details
-- `Element` details
-- `Validation`
-
-## Step IDs and traceability
-
-Assign every Implementation Step a stable ID such as `S001`, `S002`, `S003`.
-
-Every generated design node that corresponds to a plan step should carry that same source identity in the normalized model and, when executing in Figma, in plugin data:
-
-`design-to-figma:plan-step`
-
-This lets the Plan act as a cross-check contract after execution.
-
-Use a separate stable design identity for the node itself:
-
-`design-to-figma:id`
-
-A plan-step ID and a design-node ID are related but are not the same identifier.
-
-## Design Model
-
-Convert the planning result into the normalized design model defined by:
-
-`references/design-model.md`
-
-The Design Model is the machine-readable bridge between planning and execution.
-
-It must preserve:
-
-- node hierarchy;
-- one object per distinct target node;
-- sibling order;
-- node type;
-- geometry/sizing;
-- layout;
-- typography;
-- paints/strokes/effects;
-- assets;
-- variables;
-- component relationships;
-- stable node identity;
-- corresponding plan-step ID when applicable.
-
-Do not use the Plan text itself as the runtime data structure if a normalized Design Model can represent the same information deterministically.
-
-## Executable Script
-
-Generate a Figma Plugin script that can be executed without requiring the AI to remain present.
-
-The script must:
-
-1. contain or import the required normalized Design Model;
-2. use the `design-to-figma` execution contract;
-3. resolve dependencies before dependent operations;
-4. create missing nodes;
-5. reuse correct existing nodes;
-6. modify only actual deltas;
-7. preserve hierarchy and sibling order;
-8. apply required properties;
-9. apply variable bindings after variables are available;
-10. create real Components/Instances and Component Sets when required;
-11. load fonts before text mutations;
-12. validate the resulting document;
-13. report enough information to map execution results back to Plan Step IDs.
-
-For a standalone generated script, prefer this structure:
-
-```js
-const DESIGN_MODEL = /* generated normalized design model */;
-
-async function run() {
-  // deterministic execution
-}
-
-run().catch((error) => {
-  console.error(error);
-  figma.notify(`Design-to-Figma failed: ${error.message}`);
-});
-```
-
-When the repository bridge script `scripts/figma.js` is available to the execution environment, reuse its deterministic helpers rather than duplicating them. When the execution environment cannot import repository files, generate a self-contained equivalent implementation using the same contract.
-
-## Plan ↔ Script consistency
-
-The Script is generated **from the same Plan / Design Model**, not from a second independent interpretation.
-
-For every plan step:
-
-- the target node or variable must be present in the Design Model;
-- the Script must contain the corresponding operation;
-- the operation must preserve the step's Node Type;
-- the operation must use the step's parent and ordering information;
-- the operation must implement only the specified property changes.
-
-For every Script-created target node:
-
-- there must be a corresponding Design Model node;
-- there must be a corresponding Plan Step unless the operation is purely mechanical and does not represent a target change;
-- there must be a stable `design-to-figma:id`;
-- there should be a `design-to-figma:plan-step` when a Plan Step exists.
-
-Never let the Script silently add an unplanned UI element.
-
-## Cross-check after execution
-
-After running the Script, compare the resulting Figma document against the Plan and Design Model.
-
-Verify:
-
-- every Plan Step is satisfied;
-- every required target node exists;
-- every plan node has the correct Node Type;
-- parent-child relationships match;
-- sibling order matches;
-- no separate target nodes were merged;
-- no single target TextNode was unnecessarily split;
-- required elements exist even when content is optional;
-- Variables exist and bindings resolve;
-- existing correct nodes were preserved;
-- modifications contain only intended deltas;
-- no unplanned target node was created;
-- no target node was left without a corresponding execution operation.
-
-A useful result format is:
-
-```text
-S001  PASS
-S002  PASS
-S003  PASS
-S004  FAIL — expected TEXT, found FRAME
-```
-
-The Plan is therefore both the implementation specification and the audit checklist.
-
-## Fidelity rules
+## Non-negotiable fidelity rules
 
 - Figma structure must reflect the source structure.
 - Every structurally distinct source element remains a distinct Figma node.
@@ -195,23 +38,31 @@ The Plan is therefore both the implementation specification and the audit checkl
 
 ## Delegation
 
-Keep `SKILL.md` focused on workflow and rules. Use companion references for the normalized design model and current Figma API rules. Use `scripts/figma.js` for deterministic execution where available.
+Keep `SKILL.md` concise. Use the companion references for the normalized design model and current Figma API rules. Use the deterministic bridge script for mechanical construction.
 
-- `references/design-model.md` — input/output contract and normalization rules.
+- `references/design-model.md` — input contract and normalization rules.
 - `references/figma-plugin-api.md` — current API mapping and constraints.
 - `scripts/figma.js` — deterministic executor for normalized design data.
 
-## Figma API
+## Build contract
 
-Use the current Figma Plugin API and current official typings.
+The normalized design model should describe, at minimum:
 
-Use direct node creation APIs corresponding to the actual target type. Groups use `figma.group()`, Component Sets use `figma.combineAsVariants()` with real Components, Instances come from real Components, SVG assets may use `figma.createNodeFromSvg()`, and current async lookup APIs should be preferred where applicable. citeturn264046search1turn264046search3
+- `type`
+- `name`
+- `children`
+- parent/order
+- geometry or sizing behavior
+- layout / Auto Layout
+- fills / strokes / effects
+- corner radius
+- typography
+- content/assets
+- variables/tokens
+- component/instance semantics
+- stable bridge identity
 
-For variables, resolve actual `VariableCollection` / `Variable` objects and use the current variable binding helpers. Paint, effect, and layout-grid bindings operate through their corresponding helpers and immutable arrays. citeturn264046search0turn264046search7
-
-For text, load fonts before changing properties that can affect text rendering, including characters, font size, line height, letter spacing, and related text properties. citeturn298971search0turn298971search1turn298971search11
-
-Do not use deprecated ID-passing patterns when the current API expects object references. Current `setBoundVariable()` expects a `Variable` object or null rather than a variable ID. citeturn264046search6
+When a property has no direct Figma equivalent, preserve the closest editable representation and surface the limitation.
 
 ## Existing Figma state
 
@@ -224,14 +75,19 @@ When a target document already exists:
 - change only incorrect properties;
 - avoid destructive reconstruction when a local patch is sufficient.
 
+## Text
+
+A text node represents a real text-layer boundary in the source. Load its font before setting characters or typography. Preserve font family/style, size, line height, letter spacing, alignment, sizing behavior, and text content where represented.
+
+## Variables
+
+Create or resolve variables before dependent bindings. Prefer current `figma.variables` async lookup methods for reads and pass `Variable` / `VariableCollection` objects to APIs that require objects. Use the official helper methods for paint/effect/layout-grid bindings rather than mutating immutable arrays in place.
+
 ## Validation
 
-Before completing execution, validate both the artifact and the cross-check contract.
-
-Verify:
+Before completing a build, verify:
 
 - every required source node exists;
-- every Plan Step has a corresponding result;
 - parent/child relationships and sibling order match;
 - distinct source elements were not merged;
 - single text layers were not unnecessarily split;
@@ -240,17 +96,12 @@ Verify:
 - Auto Layout and sizing behavior match the source;
 - variables and bindings resolve correctly;
 - components and instances use real Figma component relationships;
-- vectors/images/assets remain editable and attached to intended nodes;
+- vectors/images/assets remain editable and attached to the intended nodes;
 - existing correct nodes were preserved;
-- no fallback placeholder hides unsupported or unresolved mapping;
-- the final Figma result does not contain unplanned target UI.
+- no fallback placeholder hides an unsupported or unresolved mapping.
 
 ## Source of truth
 
-The source design and target-state structure are authoritative for what should exist.
+Use the latest official Figma Developer / Plugin API documentation and official typings as the authority for node types, creation APIs, properties, variables, component properties, deprecations, and migration behavior.
 
-The normalized Design Model is authoritative for execution.
-
-The Implementation Plan is authoritative for human-readable intent and cross-checking.
-
-The latest official Figma Developer / Plugin API documentation and official typings are authoritative for Figma API behavior, supported properties, variables, component properties, and deprecations. citeturn298971search4turn264046search2
+Third-party examples and historical code are secondary references only.
