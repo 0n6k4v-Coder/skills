@@ -35,6 +35,7 @@ Use this sequence:
 - Auto Layout is a property of a node; it is never a substitute for creating the node.
 - Reuse a correct existing node. Modify only actual deltas.
 - Never silently replace an unsupported target node with a visually similar placeholder. Record the limitation or use the closest editable representation.
+- Preserve explicit transparency and no-fill states exactly. Do not invent a fill because a node is a Frame, container, card, input, or Auto Layout wrapper.
 
 ## Delegation
 
@@ -104,6 +105,16 @@ The execution target must be inferred from the requested output. When the user a
 - Use `figma.loadAllPagesAsync()` only when the implementation explicitly requires multi-page or document-wide traversal and the execution environment supports that behavior.
 - Do not infer a need for document-wide traversal merely because lookup or reconciliation is being performed.
 
+## Transparency and fills
+
+- Treat `fills` as an explicit visual property, not an inferred default.
+- Target/source **no fill or transparent fill** → `fills = []`.
+- Do not synthesize white, near-white, or any default fill when the target does not explicitly define one.
+- A node being a Frame, container, card, input, or Auto Layout wrapper does not imply a background fill.
+- Preserve an explicitly defined fill exactly, including its paint type, color, opacity, and variable binding where represented.
+- Do not add a fill merely to make a structural container visually distinct.
+- During synchronization, preserve an existing correct `fills = []` state and do not overwrite it with a fallback paint.
+
 ## Text
 
 A text node represents a real text-layer boundary in the source. Load its font before setting characters or typography. Preserve font family/style, size, line height, letter spacing, alignment, sizing behavior, and text content where represented.
@@ -123,6 +134,7 @@ Before completing a build, verify:
 - node types match structural/semantic roles;
 - typography and fonts are valid;
 - Auto Layout and sizing behavior match the source;
+- fills and transparency match the source exactly, including explicit no-fill states;
 - variables and bindings resolve correctly;
 - components and instances use real Figma component relationships;
 - vectors/images/assets remain editable and attached to the intended nodes;
