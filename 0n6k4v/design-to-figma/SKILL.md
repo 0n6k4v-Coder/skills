@@ -7,7 +7,7 @@ description: Converts structured UI/design specifications into faithful, editabl
 
 Turn a source design representation into a faithful, editable Figma document.
 
-This skill is the **execution layer**. It is not a UX recommendation planner and must not invent product or visual decisions that are absent from the source.
+This skill is the execution layer. It is not a UX recommendation planner and must not invent product or visual decisions that are absent from the source.
 
 The source may be JSON, HTML/CSS, a component specification, a design-token representation, or another structured UI description.
 
@@ -75,6 +75,24 @@ When a target document already exists:
 - change only incorrect properties;
 - avoid destructive reconstruction when a local patch is sufficient.
 
+## Execution environment and lifecycle
+
+Generated scripts may be pasted directly into the Figma Developer Console for interactive execution and debugging.
+
+For **Figma Developer Console execution**:
+
+- Do not call `figma.closePlugin()`.
+- Do not close or terminate the execution context while asynchronous work is still pending.
+- Finish by returning normally or logging completion with `console.log()`.
+- Treat the Console as an interactive debugging environment; do not add plugin-lifecycle cleanup intended only for a standalone plugin command.
+
+For a **standalone Figma Plugin command**:
+
+- `figma.closePlugin()` may be used after all work and awaited asynchronous operations have completed, as required by the plugin lifecycle.
+- Do not apply the Console rule blindly to a standalone plugin.
+
+The execution target must be inferred from the requested output. When the user asks for a script to paste into the Developer Console, generate a Console-safe script.
+
 ## Text
 
 A text node represents a real text-layer boundary in the source. Load its font before setting characters or typography. Preserve font family/style, size, line height, letter spacing, alignment, sizing behavior, and text content where represented.
@@ -98,7 +116,9 @@ Before completing a build, verify:
 - components and instances use real Figma component relationships;
 - vectors/images/assets remain editable and attached to the intended nodes;
 - existing correct nodes were preserved;
-- no fallback placeholder hides an unsupported or unresolved mapping.
+- no fallback placeholder hides an unsupported or unresolved mapping;
+- execution lifecycle matches the target environment;
+- Console-targeted scripts do not call `figma.closePlugin()`.
 
 ## Source of truth
 
