@@ -1,9 +1,9 @@
 # AI Agent Skills Collection
 
-> **Last Updated:** 2026-09-07
-> **Purpose:** A curated collection of reusable `SKILL.md` definitions for AI agents and agentic coding systems.
-> **Compatibility:** Framework-agnostic — designed to be usable across Hermes Agent, Claude Code, Codex, OpenCode, Cursor, and other AI agent runtimes that support `SKILL.md`-style skills.
-> **Categories:** [Figma](#figma-skills) • [Railway](#railway-skills) • [Matt Pocock](#matt-pocock-skills) • [0n6k4v](#0n6k4v-skills) • [Playwright CLI](#playwright-cli-skills) • [Google](#google-skills) • [Next.js](#nextjs-skills)
+> **Last Updated:** 2026-09-07          
+> **Purpose:** A curated collection of reusable `SKILL.md` definitions for AI agents and agentic coding systems.          
+> **Compatibility:** Framework-agnostic — designed to be usable across Hermes Agent, Claude Code, Codex, OpenCode, Cursor, and other AI agent runtimes that support `SKILL.md`-style skills.          
+> **Categories:** [Figma](#figma-skills) • [Railway](#railway-skills) • [Matt Pocock](#matt-pocock-skills) • [0n6k4v](#0n6k4v-skills) • [Playwright CLI](#playwright-cli-skills) • [Google](#google-skills) • [Next.js](#nextjs-skills)          
 > **Total Skills:** 53 (35 Figma + 1 Railway + 3 Matt Pocock + 8 0n6k4v + 1 Playwright CLI + 2 Google + 3 Next.js)
 
 ---
