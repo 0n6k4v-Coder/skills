@@ -65,6 +65,54 @@ The normalized design model should describe, at minimum:
 
 When a property has no direct Figma equivalent, preserve the closest editable representation and surface the limitation.
 
+## Script generation contract
+
+The normalized design model is the source of truth for generated Figma code. Once the model has resolved a property, the generated script must implement that property; it must not reinterpret the design decision into a merely similar-looking API configuration.
+
+### Sizing is an explicit contract
+
+When normalized `sizing` contains `horizontal` or `vertical`, map it directly to the corresponding Figma sizing property:
+
+```text
+sizing.horizontal = FIXED → node.layoutSizingHorizontal = "FIXED"
+sizing.horizontal = HUG   → node.layoutSizingHorizontal = "HUG"
+sizing.horizontal = FILL  → node.layoutSizingHorizontal = "FILL"
+
+sizing.vertical = FIXED → node.layoutSizingVertical = "FIXED"
+sizing.vertical = HUG   → node.layoutSizingVertical = "HUG"
+sizing.vertical = FILL  → node.layoutSizingVertical = "FILL"
+```
+
+These are implementation mappings, not design suggestions. Do not replace an explicit `FILL`, `HUG`, or `FIXED` sizing decision with `layoutAlign`, `layoutGrow`, `primaryAxisSizingMode`, `counterAxisSizingMode`, explicit `resize()`, hard-coded width/height, or another inferred combination merely because it may produce a similar visual result.
+
+Prefer the deterministic executor's `applySizing(node, spec.sizing)` when it is available. Do not bypass the executor's sizing contract with ad-hoc property assignments unless the target API requires a documented exception.
+
+If a requested sizing value is invalid for the target node or parent context, do not silently substitute another sizing mode. Surface the incompatibility and resolve it explicitly before claiming the node is implemented.
+
+### Layout properties are not substitutes for sizing
+
+Keep these concepts separate in generated code:
+
+- `layoutSizingHorizontal` / `layoutSizingVertical` = the node's resolved horizontal/vertical sizing mode.
+- `layoutAlign` = the node's alignment behavior within its parent's counter axis.
+- `layoutGrow` = growth behavior within the parent's primary axis.
+- `primaryAxisSizingMode` / `counterAxisSizingMode` = sizing modes of an Auto Layout container itself.
+- `resize()` / explicit width and height = concrete geometry, not a replacement for an explicit normalized sizing mode.
+
+A script may set more than one of these properties when the normalized model requires them, but one property must not be used to erase or silently stand in for another resolved property.
+
+### Auto Layout child positioning
+
+For children governed by Auto Layout, do not manually assign `x`/`y` to simulate spacing, alignment, or distribution that the parent Auto Layout properties already define. Use the normalized parent layout, child sizing, alignment, order, gap, and padding. Use explicit position only when the source model explicitly represents absolute/manual positioning or the target API requires it for that node.
+
+### Structure before geometry
+
+Generated code must establish the required parent/child hierarchy before applying contextual Auto Layout sizing and alignment. A visual grouping is not sufficient: if the source contains a parent node, the script must create or reuse that parent and append the corresponding child nodes to it.
+
+### No semantic downgrades during code generation
+
+Do not claim a normalized property was implemented when the script only approximates its visual effect. If the generated code cannot represent the resolved property with the available target API, fail visibly or surface the limitation rather than silently changing the model.
+
 ## Existing Figma state
 
 When a target document already exists:
@@ -134,12 +182,15 @@ Before completing a build, verify:
 - node types match structural/semantic roles;
 - typography and fonts are valid;
 - Auto Layout and sizing behavior match the source;
+- every explicitly resolved normalized sizing value was actually materialized in the script using the corresponding Figma sizing property or the deterministic executor's canonical sizing helper;
+- `FILL` was not silently replaced by `STRETCH`, `layoutGrow`, `AUTO`, explicit dimensions, or another inferred approximation;
 - fills and transparency match the source exactly, including explicit no-fill states;
 - variables and bindings resolve correctly;
 - components and instances use real Figma component relationships;
 - vectors/images/assets remain editable and attached to the intended nodes;
 - existing correct nodes were preserved;
 - no fallback placeholder hides an unsupported or unresolved mapping;
+- Auto Layout children are not manually positioned with `x`/`y` when layout properties are the source of the position;
 - all async Figma operations were awaited and remain within the active execution flow;
 - document-wide traversal was not introduced unless required by the target;
 - execution lifecycle matches the target environment;
