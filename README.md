@@ -1,10 +1,10 @@
 # AI Agent Skills Collection
 
-> **Last Updated:** 2026-09-07          
+> **Last Updated:** 2026-09-26          
 > **Purpose:** A curated collection of reusable `SKILL.md` definitions for AI agents and agentic coding systems.          
 > **Compatibility:** Framework-agnostic — designed to be usable across Hermes Agent, Claude Code, Codex, OpenCode, Cursor, and other AI agent runtimes that support `SKILL.md`-style skills.          
 > **Categories:** [Figma](#figma-skills) • [Railway](#railway-skills) • [Matt Pocock](#matt-pocock-skills) • [0n6k4v](#0n6k4v-skills) • [Playwright CLI](#playwright-cli-skills) • [Google](#google-skills) • [Next.js](#nextjs-skills)          
-> **Total Skills:** 53 (35 Figma + 1 Railway + 3 Matt Pocock + 8 0n6k4v + 1 Playwright CLI + 2 Google + 3 Next.js)
+> **Total Skills:** 63 (35 Figma + 1 Railway + 3 Matt Pocock + 11 0n6k4v + 1 Playwright CLI + 9 Google + 3 Next.js)
 
 ---
 
@@ -23,7 +23,7 @@ The collection is intended to make useful agent behaviors, workflows, domain gui
 
 The collection includes both:
 
-* **Domain-specific skills** — such as Figma, Next.js, Chrome Extensions, Railway, and Playwright
+* **Domain-specific skills** — such as Figma, Next.js, Chrome Extensions, Chrome DevTools MCP, Railway, and Playwright
 * **General-purpose agent skills** — such as debugging, action execution, output control, Markdown formatting, Git workflows, and Figma execution protocols
 
 ---
@@ -34,11 +34,12 @@ The collection includes both:
 | ------------------------------------ | --------------------------------------------------------------------------- | ---------------------------------------------------------- |
 | **Figma Community Skills** | https://www.figma.com/community/skills | Skills collected from multiple repositories |
 | **Figma Official (Code Connect)** | https://github.com/figma/mcp-server-guide | Official Figma skills under `figma/ebentley-figma/skills/` |
-| **0n6k4v Project Skills** | https://github.com/0n6k4v-Coder/skills/tree/master/0n6k4v | 8 agent and workflow skills |
+| **0n6k4v Project Skills** | https://github.com/0n6k4v-Coder/skills/tree/master/0n6k4v | 11 agent and workflow skills |
 | **Railway** | https://github.com/railwayapp/railway-skills | `use-railway` skill |
 | **Matt Pocock** | https://github.com/mattpocock/skills | 3 productivity / workflow skills |
 | **Playwright CLI** | https://github.com/microsoft/playwright-cli/tree/main/skills/playwright-cli | Browser automation CLI skill |
-| **Google** | https://github.com/GoogleChrome/modern-web-guidance | Modern web development and Chrome extension guidance |
+| **Google (Modern Web Guidance)** | https://github.com/GoogleChrome/modern-web-guidance | Modern web development and Chrome extension guidance |
+| **Google (Chrome DevTools MCP)** | https://github.com/ChromeDevTools/chrome-devtools-mcp/tree/main/skills | 7 Chrome DevTools debugging, performance, and automation skills |
 | **Next.js (Vercel)** | https://github.com/vercel/next.js/tree/canary/skills | 3 skills from the Next.js canary branch |
 | **Additional Upstream Repositories** | Various | See individual category tables for exact source locations |
 
@@ -80,7 +81,16 @@ skills/
 │   ├── sync-figma-token/
 │   └── uSpec/
 │
-├── google/                 ← 2 skills
+├── google/                 ← 9 skills
+│   ├── chrome-devtools-mcp/
+│   │    └── skills/
+│   │         ├── a11y-debugging/
+│   │         ├── chrome-devtools/
+│   │         ├── chrome-devtools-cli/
+│   │         ├── cookie-debugging/
+│   │         ├── debug-optimize-lcp/
+│   │         ├── memory-leak-debugging/
+│   │         └── troubleshooting/
 │   ├── chrome-extensions/
 │   └── modern-web-guidance/
 │
@@ -94,15 +104,19 @@ skills/
 │        ├── grill-me/
 │        └── teach/
 │
-├── 0n6k4v/                 ← 8 skills
+├── 0n6k4v/                 ← 11 skills
 │   ├── action-after-recognition/
 │   ├── ai-agent-communication-protocol/
 │   ├── chatgpt-open-pdf-editor-via-adobe-acrobat/
 │   ├── debugging/
 │   ├── design-to-figma/
 │   ├── git-auto-commit-push/
+│   ├── github-connector-use/
+│   │    ├── github-connector-create-branch/
+│   │    └── github-connector-write/
 │   ├── nested-fence-formatting/
-│   └── raw-content-only/
+│   ├── raw-content-only/
+│   └── workflow-insights/
 │
 ├── playwright-cli/         ← 1 skill
 │   ├── SKILL.md
@@ -177,7 +191,7 @@ Source: [mattpocock/skills](https://github.com/mattpocock/skills/tree/733d312884
 
 ---
 
-## 0n6k4v Skills (8 skills)
+## 0n6k4v Skills (11 skills)
 
 Source: [0n6k4v-Coder/skills](https://github.com/0n6k4v-Coder/skills/tree/master/0n6k4v)
 
@@ -189,8 +203,11 @@ Source: [0n6k4v-Coder/skills](https://github.com/0n6k4v-Coder/skills/tree/master
 | [`debugging`](https://github.com/0n6k4v-Coder/skills/blob/master/0n6k4v/debugging/SKILL.md) | Debugging & Audit | Provides structured FIX MODE and AUDIT MODE workflows for runtime diagnosis, root-cause analysis, codebase tracing, and verification. |
 | [`design-to-figma`](https://github.com/0n6k4v-Coder/skills/blob/master/0n6k4v/design-to-figma/SKILL.md) | Figma / Design Execution | Converts structured UI or design representations into faithful, editable Figma documents while preserving source structure, semantics, layout, assets, components, variables, and execution constraints. |
 | [`git-auto-commit-push`](https://github.com/0n6k4v-Coder/skills/blob/master/0n6k4v/git-auto-commit-push/SKILL.md) | Git Workflow | Automates status inspection, diff review, Conventional Commit generation, confirmation, commit, push, and verification. |
+| [`github-connector-create-branch`](https://github.com/0n6k4v-Coder/skills/blob/master/0n6k4v/github-connector-use/github-connector-create-branch/SKILL.md) | GitHub Connector / Git Workflow | Inspects existing branch state, creates a new branch from requested base ref via ChatGPT GitHub connector, and verifies branch creation. |
+| [`github-connector-write`](https://github.com/0n6k4v-Coder/skills/blob/master/0n6k4v/github-connector-use/github-connector-write/SKILL.md) | GitHub Connector / Git Workflow | Creates, updates, replaces, or deletes files in a GitHub repo via connected ChatGPT GitHub connector with pre-inspection and verification. |
 | [`nested-fence-formatting`](https://github.com/0n6k4v-Coder/skills/blob/master/0n6k4v/nested-fence-formatting/SKILL.md) | Markdown Formatting | Dynamically calculates and validates Markdown fence depth so outer fences remain strictly deeper than nested fences. |
 | [`raw-content-only`](https://github.com/0n6k4v-Coder/skills/blob/master/0n6k4v/raw-content-only/SKILL.md) | Output Control | Returns only the explicitly requested content without unnecessary introduction, explanation, commentary, framing, or surrounding text. |
+| [`workflow-insights`](https://github.com/0n6k4v-Coder/skills/blob/master/0n6k4v/workflow-insights/SKILL.md) | Workflow & Retrospective | Analyzes Claude Code session history to identify evidence-backed workflow patterns, recurring friction, and concrete system improvements. |
 
 ---
 
@@ -204,7 +221,9 @@ Source: [microsoft/playwright-cli](https://github.com/microsoft/playwright-cli/t
 
 ---
 
-## Google Skills (2 skills)
+## Google Skills (9 skills)
+
+### Modern Web & Extensions (2 skills)
 
 Source: [GoogleChrome/modern-web-guidance](https://github.com/GoogleChrome/modern-web-guidance)
 
@@ -212,6 +231,20 @@ Source: [GoogleChrome/modern-web-guidance](https://github.com/GoogleChrome/moder
 | ---------------------- | --------------------------------------------------------------------------- |
 | `chrome-extensions/` | `chrome-extensions` — Build and publish Chrome Extensions using Manifest V3 |
 | `modern-web-guidance/` | `modern-web-guidance` — Search best-practice guidance for modern Web APIs |
+
+### Chrome DevTools MCP Skills (7 skills)
+
+Source: [ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp/tree/main/skills)
+
+| Skill Directory | Source Path | Skills Included |
+| ---------------------------------------------------- | ------------------------------- | ----------------------------------------------------------------------------------- |
+| `chrome-devtools-mcp/skills/a11y-debugging/` | `skills/a11y-debugging/` | `a11y-debugging` — Accessibility debugging and auditing via Chrome DevTools MCP |
+| `chrome-devtools-mcp/skills/chrome-devtools/` | `skills/chrome-devtools/` | `chrome-devtools` — Efficient debugging, troubleshooting, and browser automation |
+| `chrome-devtools-mcp/skills/chrome-devtools-cli/` | `skills/chrome-devtools-cli/` | `chrome-devtools-cli` — Automate browser tasks and script Chrome DevTools via CLI |
+| `chrome-devtools-mcp/skills/cookie-debugging/` | `skills/cookie-debugging/` | `cookie-debugging` — Inspect and debug cookies, session state, and auth issues |
+| `chrome-devtools-mcp/skills/debug-optimize-lcp/` | `skills/debug-optimize-lcp/` | `debug-optimize-lcp` — Debug and optimize Largest Contentful Paint (LCP) |
+| `chrome-devtools-mcp/skills/memory-leak-debugging/` | `skills/memory-leak-debugging/` | `memory-leak-debugging` — Diagnose and resolve memory leaks in JavaScript/Node.js |
+| `chrome-devtools-mcp/skills/troubleshooting/` | `skills/troubleshooting/` | `troubleshooting` — Troubleshoot Chrome DevTools MCP connection and target issues |
 
 ---
 
@@ -360,11 +393,11 @@ Current inventory:
 | Figma | 35 |
 | Railway | 1 |
 | Matt Pocock | 3 |
-| 0n6k4v | 8 |
+| 0n6k4v | 11 |
 | Playwright CLI | 1 |
-| Google | 2 |
+| Google | 9 |
 | Next.js | 3 |
-| **Total** | **53** |
+| **Total** | **63** |
 
 The current repository default branch is `master`.
 
@@ -406,14 +439,14 @@ The collection may grow or change as useful skills are identified, upstream proj
 
 ## Summary
 
-This repository currently contains **53 skills** across **7 categories**:
+This repository currently contains **63 skills** across **7 categories**:
 
 * **35 Figma skills**
 * **1 Railway skill**
 * **3 Matt Pocock skills**
-* **8 0n6k4v skills**
+* **11 0n6k4v skills**
 * **1 Playwright CLI skill**
-* **2 Google skills**
+* **9 Google skills**
 * **3 Next.js skills**
 
 The collection is designed to provide reusable, focused instructions for AI agents across design, development, debugging, automation, documentation, and agent-operation workflows.
