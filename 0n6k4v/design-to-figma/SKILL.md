@@ -103,11 +103,49 @@ A script may set more than one of these properties when the normalized model req
 
 ### Auto Layout child positioning
 
-For children governed by Auto Layout, do not manually assign `x`/`y` to simulate spacing, alignment, or distribution that the parent Auto Layout properties already define. Use the normalized parent layout, child sizing, alignment, order, gap, and padding. Use explicit position only when the source model explicitly represents absolute/manual positioning or the target API requires it for that node.
+For children governed by Auto Layout, do not manually assign `x`/`y` to simulate spacing, alignment, or distribution that the parent Auto Layout properties already define. Use the normalized parent layout, child sizing, alignment, order, gap, padding, and wrap configuration. Use explicit position only when the source model explicitly represents absolute/manual positioning or the target API requires it for that node.
+
+### Auto Layout wrap, including vertical wrap
+
+Figma Auto Layout supports wrapping in both horizontal and vertical flows. `layoutWrap = "WRAP"` is not limited to horizontal Auto Layout.
+
+Map the normalized wrap model directly:
+
+```text
+layout.wrap = NO_WRAP → node.layoutWrap = "NO_WRAP"
+layout.wrap = WRAP    → node.layoutWrap = "WRAP"
+```
+
+For a **horizontal** flow (`layoutMode = "HORIZONTAL"`):
+
+- children fill left-to-right along the primary axis;
+- when the available width is exhausted, children continue on the next row;
+- the frame needs a constrained/fixed primary-axis size for wrapping to have a boundary.
+
+For a **vertical** flow (`layoutMode = "VERTICAL"`) with wrapping enabled:
+
+- children fill top-to-bottom along the primary axis;
+- when the available height is exhausted, children continue at the top of the next column;
+- a constrained/fixed height is therefore normally required to produce multiple columns;
+- sibling order remains the source order; vertical wrap is not masonry and must not be modeled as shortest-column packing or gap filling.
+
+Use `counterAxisSpacing` for the distance between wrapped rows/columns when the source explicitly defines it. `itemSpacing` controls spacing between consecutive items along the primary axis. Keep these separate:
+
+```text
+layout.itemSpacing        → node.itemSpacing
+layout.counterAxisSpacing → node.counterAxisSpacing
+layout.wrap               → node.layoutWrap
+```
+
+When the source specifies wrapped-track alignment, map `counterAxisAlignContent` directly. Current supported values are `"AUTO"` and `"SPACE_BETWEEN"`. Do not emulate wrapped-track distribution by inserting spacer nodes or manually positioning children.
+
+Vertical wrap is particularly important for fixed-height lists, multi-column option lists, cards/blurb columns, and similar layouts where the intended reading order is top-to-bottom before advancing to the next column.
+
+Do not use the old rotate/flip workaround for vertical wrapping when the target Figma API supports `layoutMode = "VERTICAL"` plus `layoutWrap = "WRAP"`. Preserve the source's real Auto Layout semantics instead of encoding the workaround's transformed geometry.
 
 ### Structure before geometry
 
-Generated code must establish the required parent/child hierarchy before applying contextual Auto Layout sizing and alignment. A visual grouping is not sufficient: if the source contains a parent node, the script must create or reuse that parent and append the corresponding child nodes to it.
+Generated code must establish the required parent/child hierarchy before applying contextual Auto Layout sizing, alignment, and wrapping. A visual grouping is not sufficient: if the source contains a parent node, the script must create or reuse that parent and append the corresponding child nodes to it.
 
 ### No semantic downgrades during code generation
 
@@ -182,6 +220,12 @@ Before completing a build, verify:
 - node types match structural/semantic roles;
 - typography and fonts are valid;
 - Auto Layout and sizing behavior match the source;
+- wrap direction matches the source: horizontal wrap advances to a new row, vertical wrap advances to a new column;
+- `layoutWrap` is set explicitly when wrapping is part of the normalized model;
+- vertical wrap uses `layoutMode = "VERTICAL"` and a height boundary when the source expects columns;
+- vertical wrap preserves source order and is not incorrectly implemented as masonry/shortest-column packing;
+- `counterAxisSpacing` matches the source's wrapped-track spacing when specified;
+- `counterAxisAlignContent` matches the source when specified;
 - every explicitly resolved normalized sizing value was actually materialized in the script using the corresponding Figma sizing property or the deterministic executor's canonical sizing helper;
 - `FILL` was not silently replaced by `STRETCH`, `layoutGrow`, `AUTO`, explicit dimensions, or another inferred approximation;
 - fills and transparency match the source exactly, including explicit no-fill states;
@@ -198,6 +242,6 @@ Before completing a build, verify:
 
 ## Source of truth
 
-Use the latest official Figma Developer / Plugin API documentation and official typings as the authority for node types, creation APIs, properties, variables, component properties, deprecations, and migration behavior.
+Use the latest official Figma Developer / Plugin API documentation and official typings as the authority for node types, creation APIs, properties, variables, component properties, deprecations, and migration behavior. In particular, treat `layoutWrap` as supported for both `HORIZONTAL` and `VERTICAL` Auto Layout flows, and use the current API definitions for `counterAxisSpacing` and `counterAxisAlignContent`.
 
 Third-party examples and historical code are secondary references only.
