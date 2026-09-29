@@ -25,7 +25,7 @@
 * **Do not create or generate a file.**
 * **Do not use a text editor or document editor.**
 * Keep the runbook **simple, clear, direct, explicit, and concise**.
-* Include **only the steps required** to implement and verify the local Python MCP server.
+* Include **only the steps required** to implement and verify.
 * Do not include unrelated information, optional steps, or unnecessary explanations.
 * Present all implementation steps in a **strict sequential order**:
 
