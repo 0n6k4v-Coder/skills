@@ -19,24 +19,36 @@
 
    * Add other columns where useful, but keep the structure clear and practical.
 
-3. **Complete Python local MCP server runbook**
+3. **Complete Step-By-Step Runbook**
 
-   * Generate the runbook **directly in this conversation**.
-   * **Do not generate a file.**
-   * **Do not use a text editor/document editor.**
-   * Present every implementation step in a **strict, clear sequence order**:
+* Generate the complete runbook **directly in this conversation**.
+* **Do not create or generate a file.**
+* **Do not use a text editor or document editor.**
+* Keep the runbook **simple, clear, direct, explicit, and concise**.
+* Include **only the steps required** to implement and verify the local Python MCP server.
+* Do not include unrelated information, optional steps, or unnecessary explanations.
+* Present all implementation steps in a **strict sequential order**:
 
-   ```text
-   Step 1
-   Step 2
-   Step 3
-   ...
+```text
+Step 1
+Step 2
+Step 3
+...
+```
 
-   * Every step must explicitly include a section such as:
+* Each step must clearly state:
 
-   **Related Finding IDs:** `F-001, F-004, F-009`
+  * **What to do**
+  * **Exact command, configuration, or file content required**
+  * **Expected result**, when applicable
+* When a file must be created or modified, provide its **complete final contents**, not snippets or partial changes.
+* Every step must include this section:
 
-   * This creates a traceability relationship between the research findings and the implementation steps.
-   * The runbook should therefore allow me to trace **each implementation decision back to the relevant research finding(s)**.
-   * The runbook must be complete enough to implement the local Python MCP server from start to finish according to the research findings.
+**Related Finding IDs:** `F-001, F-004, F-009`
+
+* The Finding IDs must correspond directly to the research findings supporting that step.
+* Use the existing research Finding IDs only. **Do not invent new Finding IDs.**
+* The Finding IDs must provide a clear trace from each implementation decision back to the relevant research finding(s).
+* The runbook must cover the complete implementation and verification process **from start to finish**, based only on the established research findings.
+* The final runbook must be detailed enough to follow **step by step without having to determine missing implementation details independently**.
 ````
