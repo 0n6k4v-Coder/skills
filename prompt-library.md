@@ -52,3 +52,41 @@ Step 3
 * The runbook must cover the complete implementation and verification process **from start to finish**, based only on the established research findings.
 * The final runbook must be detailed enough to follow **step by step without having to determine missing implementation details independently**.
 ````
+
+---
+
+# Create PR
+
+````text
+1. Pull/update `main` and use it as the base branch.
+
+2. Create a dedicated branch:
+
+   ```text
+   fix/<short-description>
+   ```
+
+3. Make only the bug-related changes on that branch.
+
+4. Add/update regression tests.
+
+5. Compare the branch against `main` and review the diff.
+
+6. Create a PR:
+
+   ```text
+   base: main
+   head: fix/<short-description>
+   ```
+
+7. Write the PR with:
+
+   ```text
+   Summary
+   Root cause
+   Changes
+   Validation
+   ```
+
+8. Keep **one bug = one focused branch = one PR**.
+````
