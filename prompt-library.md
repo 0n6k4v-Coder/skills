@@ -867,3 +867,153 @@ You are not allowed to finish until all conditions are satisfied:
 If any item is incomplete:
 continue working.
 ```
+
+
+---
+````
+## Task Requirements
+
+Follow this process **in order** for every technical problem.
+
+### 1. Determine whether there is actually a problem
+
+- Investigate the reported issue first.
+- If **no problem exists**, stop immediately.
+- Give me a **short, direct answer** confirming that everything is working.
+- Do not continue with unnecessary investigation or changes.
+
+### 2. Establish the ground truth
+
+If a problem exists:
+
+- Read and analyze the actual problem.
+- Investigate the **real current state of the project**, not assumptions.
+- Prefer the **Tunnel App Connector / Sandbox** for the current code and runtime state.
+- Use the **GitHub connector** when repository history, upstream code, issues, PRs, or GitHub-hosted documentation is relevant.
+- Do not guess when the actual system can be inspected.
+- Do not modify files before the cause is sufficiently established.
+
+### 3. Research the correct solution
+
+Before proposing or applying a solution:
+
+- Research the relevant technology stack.
+- Use the **latest official documentation and source code** where available.
+- Check relevant **current industry standards and recommended practices**.
+- Prefer primary/official sources over blogs, forum posts, or assumptions.
+- Compare the documented behavior with the actual behavior found in Step 2.
+- Clearly distinguish:
+  - confirmed facts,
+  - documented behavior,
+  - inferred conclusions,
+  - proposed changes.
+
+### 4. Present the solution and exact file changes
+
+If changes are required, first provide a clear file list:
+
+```text
+Files to create/modify:
+
+1. path/to/file-a
+   Purpose: ...
+
+2. path/to/file-b
+   Purpose: ...
+
+3. path/to/file-c
+   Purpose: ...
+```
+
+Then present the files **in exactly the same sequence**:
+
+#### File 1 — `path/to/file-a`
+
+Provide the **complete final file contents**.
+
+#### File 2 — `path/to/file-b`
+
+Provide the **complete final file contents**.
+
+#### File 3 — `path/to/file-c`
+
+Provide the **complete final file contents**.
+
+Rules:
+
+- No snippets.
+- No diffs.
+- No placeholders such as `...`.
+- No omitted sections.
+- Every file must be complete and directly usable.
+- Keep the file order consistent between the file list and the detailed contents.
+- Do not include unrelated changes.
+- Preserve existing working functionality unless there is a specific reason to change it.
+
+### 5. Provide verification commands
+
+Provide a **complete sequential verification procedure**:
+
+```text
+Step 1 — ...
+command
+
+Expected result:
+...
+
+Step 2 — ...
+command
+
+Expected result:
+...
+
+Step 3 — ...
+command
+
+Expected result:
+...
+```
+
+Requirements:
+
+- Commands must be in execution order.
+- Use the actual project paths and environment.
+- Include expected results.
+- Verify both the specific fix and any important existing functionality affected by the change.
+- For Docker Compose commands, always use:
+
+```bash
+docker compose --env-file .env -f deploy/compose.yaml ...
+```
+
+### Overall rule
+
+**Investigate first → establish ground truth → research official/current sources → propose the minimal correct solution → provide complete files → verify sequentially.**
+
+Do **not** use trial-and-error configuration changes when the actual system, source code, or official documentation can establish the correct answer.
+````
+
+---
+
+```
+Rule: 
+- Never end an unfinished task with a dead-end answer. 
+- Always state the exact next step. 
+- If results are needed, provide the exact command to execute. 
+- If code changes are required, explicitly identify the files and changes needed.
+
+Source Code Convention:
+- Use https://github.com/0n6k4v-Coder/openai-secure-mcp-tunnel as the single source of truth for repository source code and file contents.
+- If a file is needed, read it directly from the GitHub repository; never ask the user to send or paste it.
+- Prefer the current repository contents over information from earlier conversation context.
+
+Deep research
+- Research the latest official **MCP Server documentation**.
+- Research the latest official documentation for all relevant **technology-stack components**.
+- Research relevant and current **industry standards**.
+- Use the research to establish the technical basis for the implementation.
+```
+
+```text
+Please provide the commit command, along with a simple, clear, direct, explicit, and concise commit message and an extended description.
+```
