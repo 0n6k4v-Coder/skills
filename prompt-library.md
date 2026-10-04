@@ -1283,3 +1283,143 @@ Use [$openai-secure-mcp-tunnel](app://asdk_app_6abbd7185ee48191ac256e105d47128e)
 - Use the actual source at `/workspace/project` as the single source of truth.
 - Do not rely on assumptions, GitHub, or previous context when the source can be inspected.
 ```
+
+---
+
+````
+Using [@OpenAI Secure MCP Tunnel](plugin://dev-6abbd7185ee48191ac256e105d47128e@created-by-me-remote) access openai-tunnel sandbox and use it codebase as a SSOT
+
+My Request:
+I like to see a complete, step-by-step runbook for implementing 
+- 7.1 Create and List
+- 7.2 Status and Logs
+- 7.3 Start, Stop, Restart, Repair, Recreate, and Delete
+- 7.4 Execute Commands
+e2e comprehensive test files.
+Each file must be able to proceed an autonomous update test status in test item table at tests/e2e/reports/mcp.md. It will update item by item
+
+Our Conventions:
+Use [$openai-secure-mcp-tunnel](app://asdk_app_6abbd7185ee48191ac256e105d47128e) to access the `openai-tunnel` sandbox.
+
+- Perform the most comprehensive and in-depth codebase audit possible.
+- Use the actual source at `/workspace/project` as the single source of truth.
+- Do not rely on assumptions, GitHub, or previous context when the source can be inspected.
+
+# Verify MCP Host Executable Command
+- Inspect the actual source before giving any MCP Host Executable Command. 
+- Verify exact syntax, arguments, flags, paths, and env vars. 
+- Never guess or infer MCP Host Executable Command syntax. 
+- If unverified, do not provide the MCP Host Executable Command. 
+- Give only MCP Host Executable Command confirmed by source or official docs.
+
+Your Task:
+1. **Deep research**
+
+   * Research the latest official **MCP Server documentation**.
+   * Research the latest official documentation for all relevant **technology-stack components**.
+   * Research relevant and current **industry standards**.
+   * Use the research to establish the technical basis for the implementation.
+
+2. **Research findings summary**
+
+   * Present the findings as a **clear table**, not just prose.
+   * Include a unique **Finding ID** for every finding so it can be referenced later.
+   * Design the table with the necessary columns to make each finding easy to understand and trace. For example:
+
+   | Finding ID | Area | Finding | Why It Matters | Source / Standard | Version / Date | Implementation Impact |
+   | ---------- | ---- | ------- | -------------- | ----------------- | -------------- | --------------------- |
+
+   * Add other columns where useful, but keep the structure clear and practical.
+
+### 3. **Exact Files and Full Code**
+
+* Generate the complete implementation files **directly in this conversation**.
+* **Do not create or generate files outside the conversation.**
+* **Do not use a text editor or document editor.**
+* For **every file that must be created or modified**, provide:
+
+  * The **exact file path**
+  * The **complete final file contents**
+* **Do not provide snippets, patches, diffs, partial files, placeholders, ellipses, or “unchanged” sections.**
+* Include **only files that must actually be created or modified**.
+* Do not omit any required file.
+* The files must be sufficient to implement the complete solution without requiring the user to reconstruct missing code.
+* Do not invent files, APIs, configuration, schema, or implementation details that are not required by the established design and research findings.
+
+---
+
+### 4. **Complete Step-By-Step Runbook**
+
+* Generate the complete runbook **directly in this conversation**.
+* **Do not create or generate a file.**
+* **Do not use a text editor or document editor.**
+* The runbook must be **simple, clear, direct, explicit, concise, and complete**.
+* Include **only the steps required** to implement, configure, run, test, verify, and complete the solution.
+* Do not include unrelated information, optional steps, or unnecessary explanations.
+* Assume the user will execute the commands **exactly as written**.
+* Do not require the user to determine missing implementation details independently.
+
+Present the runbook in a **strict sequential order**:
+
+```text
+Step 1
+Step 2
+Step 3
+...
+```
+
+For every step, include exactly:
+
+**Action**
+What the user must do.
+
+**Command**
+The exact command(s) the user must run, when applicable.
+
+**File**
+Only the **file path/name** when a file must be created or modified.
+Do **not** repeat the file contents here; the complete contents are already provided in Section 3.
+
+**Expected Result**
+The exact result the user should see or the condition that must be true before continuing.
+
+**Related Finding IDs**
+`F-001, F-004, F-009`
+
+Rules:
+
+* Every implementation, configuration, security, testing, and verification step must include **Related Finding IDs**.
+* The Finding IDs must correspond directly to the research findings supporting that step.
+* Use **existing research Finding IDs only**.
+* **Do not invent new Finding IDs.**
+* Every command must be explicit and copy-pasteable.
+* Every expected result must be concrete and verifiable.
+* When a step requires creating or modifying a file, identify the file by its **exact path**, but do not repeat its contents.
+* The runbook must cover the complete process **from start to finish**, including:
+
+  * prerequisites
+  * environment/configuration
+  * file creation/modification
+  * dependency installation/update
+  * build
+  * service startup
+  * verification
+  * functional testing
+  * security verification
+  * failure checks required before declaring success
+* The final step must define the **final acceptance criteria** for the implementation.
+* The complete runbook must be executable **without the user having to infer, invent, or fill in missing steps**.
+* Section 3 contains the complete file contents. Section 4 contains the **execution procedure only**.
+````
+
+---
+
+```
+Using OpenAI Secure MCP Tunnel access openai-tunnel sandbox. Apply all of these files direct to my codebase and leave test execute command for me right here.
+```
+
+```
+using OpenAI Secure MCP Tunnel access to openai-tunnel sandbox.
+
+Execute git diff command direct to sandbox terminal and inspect every single change on my codebase and present the commit command, along with a simple, clear, direct, explicit, and concise commit message and an extended description to me here.
+```
