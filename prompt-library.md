@@ -1271,3 +1271,15 @@ Autonomous Execute Prompt
 - If blocked, state **one exact blocker + one exact action** required from me, then continue immediately once resolved.
 - **Do the work, don't just describe the work.**
 ```
+
+---
+
+# Perform audit
+
+```text
+Use [$openai-secure-mcp-tunnel](app://asdk_app_6abbd7185ee48191ac256e105d47128e) to access the `openai-tunnel` sandbox.
+
+- Perform the most comprehensive and in-depth codebase audit possible.
+- Use the actual source at `/workspace/project` as the single source of truth.
+- Do not rely on assumptions, GitHub, or previous context when the source can be inspected.
+```
