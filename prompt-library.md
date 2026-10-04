@@ -1014,6 +1014,260 @@ Deep research
 - Use the research to establish the technical basis for the implementation.
 ```
 
+```
+Rule: 
+- Never end an unfinished task with a dead-end answer. 
+- Always state the exact next step. 
+- If results are needed, provide the exact command to execute. 
+- If code changes are required, explicitly identify the files and changes needed.
+
+**Source Code Convention:**
+- Use the `openai-tunnel` sandbox via **OpenAI Secure MCP Tunnel** as the single source of truth for repository source code and file contents.
+- When repository files are needed, read them directly from the `/workspace/project` checkout in the `openai-tunnel` sandbox.
+- Prefer the current repository contents in the `openai-tunnel` sandbox over information from earlier conversation context.
+- Do not ask the user to send or paste repository files.
+- Do not infer repository structure, file contents, APIs, or implementation details from memory or previous conversation context when the current repository can be inspected directly.
+- Before proposing or applying code changes, inspect the relevant current files in the `openai-tunnel` sandbox first.
+- When GitHub and the `openai-tunnel` sandbox differ, treat the current `openai-tunnel` checkout as the authoritative source for the working codebase.
+
+Deep research
+- Research the latest official **MCP Server documentation**.
+- Research the latest official documentation for all relevant **technology-stack components**.
+- Research relevant and current **industry standards**.
+- Use the research to establish the technical basis for the implementation.
+```
+
 ```text
 Please provide the commit command, along with a simple, clear, direct, explicit, and concise commit message and an extended description.
+```
+
+```text
+# Continuous Debug / Fix Execution Prompt
+
+When I assign you a **Debug / Fix** task, treat it as a **continuous task**. Continue working autonomously until the task reaches **DONE / VERIFIED** status.
+
+## 1. Core Execution Rules
+
+1. **Do not stop at an initial root cause.**
+   Finding a plausible root cause is not the same as fixing the problem.
+
+2. **Do not stop to announce what you are going to investigate next.**
+   If you can investigate or act, do it first and report the result afterward.
+
+3. **Use available tools immediately.**
+   If you have access to source code, GitHub, web research, files, logs, connected systems, or other relevant tools, use them without waiting for permission.
+
+4. Continuously execute this loop:
+
+   **Inspect → Gather Evidence → Determine Cause → Fix → Verify → If Failed, Investigate Further → Fix → Verify Again**
+
+5. Continue autonomously until one of these conditions is met:
+   - The problem is actually fixed.
+   - Verification passes.
+   - A genuine blocker prevents further progress and requires an action that only I can perform.
+
+6. If the task has multiple steps, complete **all steps you can perform yourself** before asking me to do anything.
+
+7. **Do not ask me to run commands merely to collect information that you can obtain yourself** through available tools or source inspection.
+
+8. If a command genuinely must be executed on my machine:
+   - Stop only at that point.
+   - Give me **exactly one command**, the most necessary command at that moment.
+   - Make it immediately copy/pasteable.
+   - Do not give multiple diagnostic commands at once.
+
+9. When I provide the command result, **continue the task immediately** from the current state.
+   Do not restart the workflow or re-explain the process.
+
+10. **Do not repeat checks that have already been proven**, unless new evidence makes the previous conclusion questionable.
+
+11. If any previous recommendation from you was incorrect, explicitly state:
+
+   **“The previous recommendation was incorrect and is now cancelled.”**
+
+   Then continue from the current state. Do not keep building on the incorrect recommendation.
+
+12. **Do not present multiple alternatives while there is still a primary hypothesis that can be directly tested.**
+
+13. **Change one isolated configuration point at a time** whenever the root cause can still be isolated.
+
+14. **Never commit changes unless I explicitly ask you to commit.**
+
+15. When modifying a file:
+   - Use the repository I specify as the **single source of truth**.
+   - Read the relevant file directly from that repository.
+   - Make only the changes proven to be necessary.
+   - Always provide the **complete Full File** after the change.
+   - Never provide only a snippet or diff when presenting the modified file.
+
+---
+
+# 2. Source Code and Research Rules
+
+When the task involves a repository, use the repository I specify as the authoritative source for source code and file contents.
+
+Do not ask me to paste files that you can retrieve through available tools.
+
+For technical debugging, research the relevant current documentation before making architectural or configuration decisions, including:
+
+- Official MCP Server documentation.
+- Official documentation for the relevant technology-stack components.
+- Current official project documentation and source code.
+- Relevant current industry standards where applicable.
+
+Use this research as the technical basis for implementation and verification.
+
+Prefer **current upstream/source documentation** over assumptions, memory, or outdated examples.
+
+---
+
+# 3. Evidence Standards
+
+Separate the following clearly:
+
+### Proven
+Facts directly established by:
+- Source code
+- Logs
+- Command output
+- Official documentation
+- Reproducible tests
+- Successful verification
+
+### Hypothesis
+A technically plausible explanation that has not yet been verified.
+
+If the root cause is not yet proven, explicitly state:
+
+**“Not yet confirmed.”**
+
+Then continue investigating instead of stopping.
+
+Never present a hypothesis as a confirmed root cause.
+
+---
+
+# 4. Debugging Response Structure
+
+Use the following structure **only when there is a meaningful debugging result to report**.
+
+## Root Cause
+
+- State what has been proven.
+- Clearly separate the **root cause** from its symptoms.
+- If it is not yet confirmed, say:
+  **“Not yet confirmed.”**
+- Continue investigating instead of ending the task.
+
+## What Has Been Done
+
+- Report only actions that were actually performed.
+- Include the relevant results/evidence.
+- Do not report future plans as completed work.
+- Do not fill this section with actions that have not happened yet.
+
+## What Needs to Be Changed
+
+- Identify the exact files that must be changed.
+- Describe only changes proven to be necessary.
+- If no file changes are required, state:
+  **“No changes required.”**
+
+## What I Need to Do Now
+
+Include this section **only when an action genuinely must be performed on my machine**.
+
+- Provide exactly one copy/pasteable command.
+- Give only the single next step required.
+- Do not give a list of commands.
+- After I return the result, immediately continue debugging from that state.
+
+## Verification
+
+- State what has already been verified.
+- State the expected result.
+- State the actual result.
+- If verification fails, **continue debugging instead of ending the response**.
+
+## DONE
+
+Declare **DONE** only when all of the following are true:
+
+- The root cause has been fixed.
+- Verification passes.
+- There are no known unresolved blockers.
+- The system behaves according to the original requirement.
+
+---
+
+# 5. Execution Priority
+
+When debugging, prioritize actions in this order:
+
+1. **Inspect the actual current state.**
+2. **Gather objective evidence.**
+3. **Identify the smallest testable root cause.**
+4. **Make the smallest necessary change.**
+5. **Verify the change.**
+6. If verification fails, use the new evidence to continue debugging.
+7. Repeat until **VERIFIED / DONE**.
+
+Do not make broad architectural changes when a narrow fix can be tested.
+
+Do not modify multiple unrelated configuration points at once.
+
+Do not declare success based only on a theoretical explanation.
+
+---
+
+# 6. Most Important Rule
+
+**Do the work before reporting the work.**
+
+Do not primarily tell me what you *are going to do*.
+
+Instead:
+
+**Inspect → Act → Verify → Report the actual result.**
+
+Do not end a task merely because you found a theoretical answer.
+
+Your responsibility is to **drive the task all the way to VERIFIED / DONE**, not merely tell me what I should do next.
+
+The goal is not to provide advice.
+
+The goal is to **solve, verify, and complete the task**.
+```
+
+---
+
+# Verify Command Prompt
+
+```text
+# Verify Command Prompt
+- Inspect the actual source before giving any command.
+- Verify exact syntax, arguments, flags, paths, and env vars.
+- Never guess or infer CLI syntax.
+- If unverified, do not provide the command.
+- Give only commands confirmed by source or official docs.
+```
+
+---
+Autonomous Execute Prompt
+```text
+Autonomous Execute Prompt
+- Execute the task **end-to-end autonomously**.
+- Do **not** stop after each step or hand me a “next step”.
+- After every result: **analyze → decide → act → verify → continue**.
+- Use all available tools, source code, documentation, logs, and diagnostics before asking me for anything.
+- If something fails, **debug and continue automatically**; do not stop at the first failure.
+- Do not ask me to run commands unless you genuinely cannot perform the action yourself.
+- Make changes only when supported by evidence; do not guess or redesign unnecessarily.
+- After making changes, **test and verify the actual result**.
+- If a previous assumption/recommendation was wrong, explicitly cancel it and continue from the corrected understanding.
+- Keep working until:
+  - **Completed and verified**, or
+  - **A genuine blocker remains** that only I can resolve.
+- If blocked, state **one exact blocker + one exact action** required from me, then continue immediately once resolved.
+- **Do the work, don't just describe the work.**
 ```
