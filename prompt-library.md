@@ -1423,3 +1423,26 @@ using OpenAI Secure MCP Tunnel access to openai-tunnel sandbox.
 
 Execute git diff command direct to sandbox terminal and inspect every single change on my codebase and present the commit command, along with a simple, clear, direct, explicit, and concise commit message and an extended description to me here.
 ```
+
+---
+
+```
+## Task: Comprehensive Repository Audit
+
+**Target Repository:** <url>
+Use the [$github](app://connector_76869538009648d5b282a4bb21c3d157) to access and audit the entire target repository.
+
+### Audit Requirements
+1. **Inspect the entire repository.** Examine all accessible files, not just documentation, metadata, or selected source files.
+2. **Trace code and dependencies.** Follow imports, function calls, entry points, dependencies, and execution paths across the codebase.
+3. **Map end-to-end flows.** Trace initialization, configuration, runtime behavior, component interactions, errors, shutdown, and cleanup.
+4. **Inspect implementation and infrastructure.** Review source code, configuration, dependencies, build files, Docker, Compose, scripts, tests, CI, TLS, lifecycle management, and uninstall procedures.
+5. **Audit security and reliability.** Identify vulnerabilities, failure modes, resource leaks, unsafe assumptions, configuration risks, concurrency issues, and dependency risks.
+6. **Verify actual behavior.** Compare documentation with implementation. Separate confirmed facts, inferences, and unresolved questions.
+7. **Track inspection coverage.** Record inspected and uninspected files, traced components, investigated execution paths, and remaining gaps.
+8. **Support findings with evidence.** Reference file paths, symbols, line numbers, and relevant code relationships. Explain the evidence behind each finding.
+9. **Analyze component interactions.** Trace data flow, control flow, configuration, process boundaries, external interfaces, and resource ownership across components.
+10. **Evaluate tests and validation.** Examine test coverage, test cases, CI, build checks, and validation scripts. Identify missing coverage and never claim tests ran unless they did.
+11. **Validate suspected issues.** Trace potential defects to their root causes, examine safeguards and affected components, and distinguish confirmed issues from speculation.
+12. **Assess the system as a whole.** Connect architecture, runtime behavior, security boundaries, dependencies, failure scenarios, and lifecycle management into a coherent understanding.
+```
