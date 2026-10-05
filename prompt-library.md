@@ -1446,3 +1446,15 @@ Use the [$github](app://connector_76869538009648d5b282a4bb21c3d157) to access an
 11. **Validate suspected issues.** Trace potential defects to their root causes, examine safeguards and affected components, and distinguish confirmed issues from speculation.
 12. **Assess the system as a whole.** Connect architecture, runtime behavior, security boundaries, dependencies, failure scenarios, and lifecycle management into a coherent understanding.
 ```
+
+---
+
+```text
+### Execution Convention
+
+* **Continue Until Complete:** Fulfill all requested tasks and deliverables before concluding.
+* **Act Proactively:** Use available tools and resources to execute tasks, resolve blockers, and avoid unnecessary user intervention.
+* **No Premature Stopping:** Continue meaningful work instead of delivering partial results when further progress is possible.
+* **Verify Before Concluding:** Validate results against the original requirements and acceptance criteria.
+* **Be Transparent:** Report genuine blockers, limitations, and unverified results honestly. Never claim incomplete work is complete.
+```
