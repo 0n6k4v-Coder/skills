@@ -96,6 +96,348 @@ Rules:
 * Section 3 contains the complete file contents. Section 4 contains the **execution procedure only**.
 ````
 
+````
+# Implementation Task Requirements
+
+## 0. Mandatory Codebase Inspection Gate
+
+Before researching implementation details, proposing changes, or writing implementation code, inspect the actual repository and establish a verified understanding of the existing codebase.
+
+### 0.1 Inspect the Actual Codebase
+
+1. Identify the repository, current branch, and current commit SHA.
+2. Inspect the repository structure and identify the relevant source files, configuration files, dependency manifests, tests, documentation, and runtime entry points.
+3. Read the complete contents of every existing file that is relevant to the requested implementation.
+4. Trace imports, function calls, interfaces, configuration references, dependency relationships, and test coverage to determine the actual implementation boundaries.
+5. Verify existing APIs, behavior, conventions, and constraints directly from repository contents. Do not infer implementation details from filenames, directory structures, summaries, or assumptions.
+
+### 0.2 Mandatory Full Exact Path and Full File Content Presentation
+
+**For every existing repository file read or inspected as part of the implementation task, present its exact repository-relative path and its complete current file contents before using that file as a basis for analysis or implementation decisions.**
+
+Use the following format for each inspected file:
+
+**File ID:** `CODE-001`
+
+**Exact Repository-Relative Path:** `path/to/file.ext`
+
+**Action:** `READ ONLY`
+
+**Inspection Status:** `FULL CONTENT READ`
+
+**Full Current File Content:**
+
+```text
+[The complete, unmodified contents of the actual file, from the first line to the last line]
+```
+
+Mandatory rules:
+
+* Use the exact path and actual contents obtained from the repository.
+* Preserve the original content faithfully, including relevant comments, imports, declarations, configuration, and trailing sections.
+* Do not replace content with summaries, excerpts, snippets, diffs, ellipses, or placeholders such as `[remaining content omitted]`.
+* Do not reconstruct files from memory, documentation, previous responses, or assumptions.
+* Do not claim that a file was read completely unless its complete contents were successfully retrieved and reviewed.
+* If a file is too large for one response, split it into consecutive, clearly numbered parts. Identify the exact file path and part number for every part. Preserve the original order and ensure that the parts collectively contain the complete file without gaps or duplicated sections.
+* If an output limit prevents presenting the complete file, explicitly identify the file, the exact path, the retrieved range, and the outstanding content. Continue in subsequent responses whenever possible. Do not treat partial inspection as complete.
+* If a file cannot be accessed, report `BLOCKED` or `NOT AVAILABLE`, state the reason, and do not invent its contents.
+* Distinguish files actually read from files merely discovered in a directory listing.
+* Use a stable `File ID` for each file so subsequent findings, changes, and tests can reference it.
+* If the task covers many files, inspect and present them in manageable batches. Do not silently skip relevant files.
+
+### 0.3 Inspection Completion Gate
+
+Do not proceed to implementation design until the relevant existing codebase has been inspected and its complete contents presented according to Section 0.2.
+
+Before proceeding, provide an inspection inventory containing:
+
+| File ID | Exact Repository-Relative Path | Inspection Status | Relevant Components | Dependencies / Callers |
+| ------- | ------------------------------ | ----------------- | ------------------- | ---------------------- |
+
+If inspection is incomplete, explicitly identify the outstanding files and limitations. Continue all feasible inspection work. Never claim complete codebase understanding when relevant files remain unread.
+
+**Important distinction:** Section 0 documents the verified, existing code. Section 3 documents the proposed final code. These sections must never be mixed or presented as if they were the same version of a file.
+
+---
+
+## 1. Deep Research
+
+1. Research the latest applicable official MCP Server documentation.
+2. Research the latest applicable official documentation for all relevant technology-stack components and their actual versions in the repository.
+3. Research relevant, current industry standards and security requirements.
+4. Prefer primary sources, including official specifications, vendor documentation, standards publications, and authoritative security guidance.
+5. Verify that each source supports the specific technical claim attributed to it.
+6. Record source URLs, document or specification versions, publication dates, and access dates where available.
+7. Distinguish mandatory requirements from recommendations and implementation choices.
+8. Use the research to establish the technical basis for the implementation.
+9. Do not invent APIs, configuration options, security guarantees, compatibility claims, or repository behavior.
+10. If authoritative sources conflict, explain the conflict and justify the selected approach.
+
+---
+
+## 2. Research Findings Summary
+
+Present the findings as a clear, traceable table rather than prose alone.
+
+Assign a unique, stable Finding ID to every finding.
+
+Use this table structure:
+
+| Finding ID | Area | Finding | Why It Matters | Source / Standard | Version / Date | Implementation Impact | Verification Method |
+| ---------- | ---- | ------- | -------------- | ----------------- | -------------- | --------------------- | ------------------- |
+
+Requirements:
+
+1. Use Finding IDs in the format `F-001`, `F-002`, `F-003`, and so on.
+2. Cite the actual authoritative source for each finding.
+3. Include only findings supported by evidence.
+4. Distinguish confirmed facts, normative requirements, recommendations, and unresolved questions.
+5. Map each applicable finding to the exact existing files, proposed changes, and tests.
+6. Reuse existing Finding IDs throughout the deliverables and runbook.
+7. Never invent new Finding IDs in later sections.
+8. If a finding does not apply, explain why instead of forcing an unnecessary change.
+
+---
+
+## 3. Implementation Deliverables
+
+### 3.1 File Inventory
+
+Identify every file required to implement the task, including files that must be created, modified, or deleted.
+
+Trace the existing codebase and its dependencies before deciding which files need changes.
+
+Use this table:
+
+| File ID | Exact Repository-Relative Path | Action | Purpose | Related Finding IDs | Dependencies / Callers | Required Tests |
+| ------- | ------------------------------ | ------ | ------- | ------------------- | ---------------------- | -------------- |
+
+Allowed actions:
+
+* `CREATE` — the file does not exist and must be created.
+* `MODIFY` — an existing file must be changed.
+* `DELETE` — an existing file must be removed, with explicit justification.
+* `NO CHANGE` — an inspected file is relevant but requires no modification.
+
+Use exact repository-relative paths. Do not invent paths without checking the repository structure and existing project conventions.
+
+### 3.2 Mandatory Complete File Contents
+
+**For every file marked `CREATE` or `MODIFY`, provide its entire final file contents.**
+
+For each file, use this format:
+
+**File ID:** `IMPL-001`
+
+**Exact Repository-Relative Path:** `path/to/file.ext`
+
+**Action:** `CREATE` or `MODIFY`
+
+**Related Finding IDs:** `F-001, F-004`
+
+**Dependencies / Callers:** List the verified dependencies and affected callers.
+
+**Full Final File Content:**
+
+```text
+[The complete final contents of this file]
+```
+
+Mandatory rules:
+
+1. For `CREATE`, provide the complete content of the new file.
+2. For `MODIFY`, provide the complete replacement content, not only changed lines.
+3. Do not provide snippets, diffs alone, pseudocode, ellipses, placeholders, or omitted sections as substitutes for full contents.
+4. Do not leave unresolved implementation decisions, unspecified arguments, or TODO markers for required functionality.
+5. Preserve unrelated existing behavior unless the task explicitly requires changing it.
+6. Base modifications on the verified current contents presented in Section 0.
+7. Maintain consistency across imports, exports, interfaces, types, configuration, dependencies, tests, documentation, and runtime behavior.
+8. If a file is too large for one response, split its complete contents into consecutively numbered parts. Identify the exact path and part number, preserve ordering, and explicitly confirm when all parts have been delivered.
+9. Never claim that a file was modified in the repository merely because its proposed contents are displayed in the conversation.
+10. Clearly distinguish **proposed file contents** from **changes actually applied to the repository**.
+11. If repository write access is available and implementation is requested, apply the changes and verify the resulting repository state. Otherwise, provide the complete implementation contents and exact application procedure without claiming that changes were applied.
+12. If a required file cannot be completed, identify its exact path, missing content, blocker, and impact. Do not mark the implementation complete.
+
+### 3.3 Traceability Matrix
+
+Map every applicable Finding ID to the affected files and verification tests.
+
+| Finding ID | Requirement / Technical Constraint | Affected File IDs and Exact Paths | Implementation Change | Test ID / Exact Test Path | Verification Method |
+| ---------- | ---------------------------------- | --------------------------------- | --------------------- | ------------------------- | ------------------- |
+
+Requirements:
+
+* Every implementation-relevant finding must be traceable to an implementation decision or an explicit explanation of why no code change is required.
+* Every security-critical requirement must have a corresponding verification method.
+* Every new or modified behavior must have appropriate tests.
+* Use stable Test IDs, such as `T-001`, `T-002`, and `T-003`.
+* Do not invent test paths or claim test coverage without verifying the repository or identifying the proposed test file.
+
+### 3.4 Cross-File Consistency Review
+
+Verify the complete implementation across all affected files, including:
+
+* Interfaces, imports, exports, types, and function signatures.
+* Dependency manifests, lockfiles, and compatible version constraints.
+* Configuration defaults, environment variables, and runtime entry points.
+* Error handling, security boundaries, permissions, and input validation.
+* Tests, fixtures, mocks, and test configuration.
+* Documentation, commands, examples, and runbooks.
+* Backward compatibility and existing behavior.
+* Installation, upgrade, rollback, and cleanup behavior where applicable.
+
+Report each issue found and its resolution. Do not assume that independently plausible files form a working implementation.
+
+### 3.5 Validation Results
+
+Provide the exact commands required to validate the implementation.
+
+Use this table:
+
+| Test ID | Validation Area | Exact Command | Expected Result | Actual Result | Status | Related Finding IDs |
+| ------- | --------------- | ------------- | --------------- | ------------- | ------ | ------------------- |
+
+Use only these statuses:
+
+* `PASS` — the exact validation was executed and passed.
+* `FAIL` — the exact validation was executed and failed.
+* `NOT RUN` — the validation was not executed.
+* `BLOCKED` — the validation could not be executed because of an explicit blocker.
+
+Rules:
+
+1. Never claim an unexecuted test passed.
+2. Do not fabricate command output, test results, build results, coverage, or security scan results.
+3. Distinguish commands that were executed from commands the user must execute.
+4. Record relevant environment requirements, prerequisites, and blockers.
+5. If a test fails, report the actual failure and the required corrective action.
+6. If the environment prevents validation, identify exactly what remains unverified.
+
+### 3.6 Mandatory Completion Gate
+
+Do not mark Section 3 complete until all applicable conditions below are satisfied:
+
+* [ ] Relevant existing codebase files have been inspected, with exact paths and complete current contents presented as required by Section 0.
+* [ ] The complete file inventory is provided.
+* [ ] Every required `CREATE` and `MODIFY` file has its complete final contents.
+* [ ] All implementation-relevant Finding IDs are traceable to files and tests.
+* [ ] Cross-file dependencies and compatibility have been reviewed.
+* [ ] Required functional and security tests are identified.
+* [ ] Validation results are reported honestly.
+* [ ] Limitations, blockers, and unresolved items are explicitly disclosed.
+* [ ] Repository changes are claimed only if they were actually applied and verified.
+
+If any applicable condition remains incomplete, explicitly list the outstanding item, its exact file path or requirement, its impact, and the next feasible action. Continue all feasible work.
+
+**Analysis, recommendations, file inventories, partial code, diffs, and recovery procedures do not substitute for complete implementation deliverables.**
+
+---
+
+## 4. Complete Step-by-Step Runbook
+
+### 4.1 Runbook Requirements
+
+* Generate the complete runbook directly in this conversation.
+* Do not create or generate a runbook file.
+* Do not use a text editor or document editor to produce the runbook.
+* Keep the runbook simple, direct, concise, explicit, and complete.
+* Include only the steps required to implement, configure, run, test, verify, and complete the solution.
+* Assume the user will execute the commands exactly as written.
+* Do not require the user to invent missing implementation details.
+* Use the exact paths, versions, commands, configuration values, and prerequisites verified in the repository or explicitly established by the implementation.
+* Section 3 contains the complete final file contents. Section 4 contains the execution procedure only.
+
+### 4.2 Strict Sequential Format
+
+Present the runbook in this order:
+
+```text
+Step 1
+Step 2
+Step 3
+...
+```
+
+For every step, include exactly these fields:
+
+**Action**
+
+What the user must do.
+
+**Command**
+
+The exact command or commands the user must run, when applicable. If no command is required, state `N/A`.
+
+**File**
+
+Only the exact file path or filename when a file must be created or modified. Do not repeat file contents here. If no file is involved, state `N/A`.
+
+**Expected Result**
+
+The concrete output or verifiable condition that must be true before continuing.
+
+**Related Finding IDs**
+
+Use only existing Finding IDs established in Section 2, for example `F-001, F-004, F-009`. If a step genuinely has no applicable research finding, state `N/A` and explain why.
+
+### 4.3 Runbook Coverage
+
+Include all steps necessary for the actual implementation, in dependency order:
+
+1. Prerequisites and environment checks.
+2. Repository and branch verification.
+3. Configuration and required environment variables.
+4. File creation or modification using the complete contents in Section 3.
+5. Dependency installation or update.
+6. Build and static checks.
+7. Service startup or runtime execution, where applicable.
+8. Functional tests.
+9. Security verification.
+10. Required failure-path checks.
+11. Final state and acceptance verification.
+
+Do not include irrelevant or optional steps. If a category does not apply to the actual implementation, explicitly state why it is not required rather than adding unnecessary commands.
+
+### 4.4 Runbook Safety and Accuracy
+
+* Every implementation, configuration, security, testing, and verification step must include the applicable existing Finding IDs.
+* Do not invent Finding IDs.
+* Every command must be explicit and copy-pasteable.
+* Do not use unexplained placeholders or ask the user to determine unspecified values.
+* Identify exact file paths for all file operations.
+* Do not repeat file contents in the runbook.
+* Ensure that commands are compatible with the actual project tooling and supported environment.
+* State expected output or a concrete pass condition for every step.
+* Include cleanup, rollback, or failure checks when they are required for safe completion.
+* Never claim that a command was executed when it was only provided for the user.
+
+### 4.5 Final Acceptance Criteria
+
+The final runbook step must define explicit acceptance criteria covering:
+
+* Required files and repository state.
+* Configuration and runtime readiness.
+* Build and test results.
+* Security-critical requirements.
+* Traceability from findings to implementation and tests.
+* Required documentation and runbook consistency.
+* Outstanding failures, blockers, and limitations.
+
+The implementation may be marked `COMPLETE` only when every mandatory acceptance criterion has been verified. Otherwise, report `INCOMPLETE` or `BLOCKED`, identify each unmet criterion, and state the next required action.
+
+---
+
+## Required Final Output Order
+
+1. **Codebase Inspection** — inspection inventory followed by the exact paths and complete current contents of all relevant files inspected.
+2. **Research Findings Summary** — findings table with stable Finding IDs and authoritative sources.
+3. **Implementation Deliverables** — file inventory, traceability matrix, complete final file contents, cross-file consistency review, and validation results.
+4. **Complete Step-by-Step Runbook** — execution procedure only, in strict sequential order.
+5. **Completion Status** — `COMPLETE`, `INCOMPLETE`, or `BLOCKED`, supported by the mandatory completion and acceptance gates.
+
+**Non-negotiable rule:** Never substitute an inventory, summary, snippet, diff, assumption, or statement of completion for the required exact paths and complete file contents. Report what was actually inspected, what was actually implemented, what was actually tested, and what remains outstanding.
+````
+
 ---
 
 # Create PR
