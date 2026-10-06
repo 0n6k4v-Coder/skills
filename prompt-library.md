@@ -1481,3 +1481,19 @@ I will launch two terminal so you can present me seperately command for both ter
 
 ## ALl of the Tasks you need to proceeding.
 ```
+
+---
+
+```text
+# GitHub Connector Convention
+
+1. **Pin the target:** Always specify `owner/repo` and the exact branch or commit SHA. Never assume the default branch.
+2. **Explore before editing:** Inspect repository metadata, the file tree, related source files, tests, and workflows before proposing changes.
+3. **Search, then fetch:** Use code search to locate symbols and dependencies; use `fetch_file` for authoritative file contents.
+4. **Read large files in chunks:** Use `start_line` and `end_line` with overlapping ranges when needed. Track line ranges and verify completeness before treating content as a full file.
+5. **Trace cross-file dependencies:** Check callers, imports, configuration, tests, and deployment files before changing interfaces.
+6. **Preserve existing code:** Make targeted edits. Fetch the latest file and its SHA before updating; never overwrite based on partial content.
+7. **Write safely:** Create a working branch, apply sequential updates, inspect the resulting diff, and use a pull request for review. Never force-update or merge without explicit authorization.
+8. **Verify honestly:** Inspect CI runs, job logs, and commit statuses. Clearly distinguish passed, failed, pending, unavailable, and not run.
+9. **Deliver evidence:** Report the exact branch/commit, files changed, complete-file versus partial excerpts, verification results, and any connector limitations. Never invent file contents, test results, or download links.
+```
