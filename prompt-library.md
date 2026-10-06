@@ -1460,3 +1460,24 @@ Use the [$github](app://connector_76869538009648d5b282a4bb21c3d157) to access an
 ```text
 Keep responses concise and focus only on essential information. Remove redundant explanations, introductions, repeated conclusions, and statements about your own intentions. Do not repeat warnings already mentioned unless they are necessary for decision-making or safety. For technical questions, answer directly and provide the next steps.
 ```
+
+
+---
+
+```text
+## My Purpose
+
+Okay it fine.
+
+Now I need to see a clear sequence order guidance for adoption this project.
+
+Let's begin with clone the repo(Your created branch) -> install cli -> access .venv shell -> give me all of the commands for preflight testing -> cli config command -> cli setup command -> workspace create commands -> sandboxs create commands -> end with clean up and uninstall
+
+Objective is ensure that we could really run both dev and prod runtime at the same time without any conflict.
+
+I will launch two terminal so you can present me seperately command for both terminal
+
+## All of the Convention you need to follow along.
+
+## ALl of the Tasks you need to proceeding.
+```
