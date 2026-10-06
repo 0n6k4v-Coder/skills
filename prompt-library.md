@@ -19,24 +19,25 @@
 
    * Add other columns where useful, but keep the structure clear and practical.
 
-### 3. **Exact Files and Full Code**
+3. **Implementation Deliverables**
 
-* Generate the complete implementation files **directly in this conversation**.
-* **Do not create or generate files outside the conversation.**
-* **Do not use a text editor or document editor.**
-* For **every file that must be created or modified**, provide:
+1. **Identify all required files.** Trace dependencies and map each Finding ID to the affected files and tests.
 
-  * The **exact file path**
-  * The **complete final file contents**
-* **Do not provide snippets, patches, diffs, partial files, placeholders, ellipses, or “unchanged” sections.**
-* Include **only files that must actually be created or modified**.
-* Do not omit any required file.
-* The files must be sufficient to implement the complete solution without requiring the user to reconstruct missing code.
-* Do not invent files, APIs, configuration, schema, or implementation details that are not required by the established design and research findings.
+2. **Deliver complete file contents.** For every file to create or modify, provide its exact repository-relative path, action (`CREATE` / `MODIFY`), related Finding IDs, and entire final contents. No snippets, diffs alone, placeholders, or omitted sections. Split long files into consecutive parts if necessary.
+
+3. **Verify consistency.** Check cross-file dependencies, compatibility, security controls, tests, documentation, and runbook alignment. Do not invent APIs or assume unverified repository behavior.
+
+4. **Report validation honestly.** Provide exact test commands and classify results as `PASS`, `FAIL`, `NOT RUN`, or `BLOCKED`. Never claim unexecuted tests passed.
+
+5. **Mandatory Completion Gate.** Do not mark Task 3 complete until all required file contents are delivered, cross-file consistency is reviewed, findings are traceable to changes and tests, and limitations are disclosed. If anything remains incomplete, explicitly identify it and continue all feasible work.
+
+6. **No false completion.** Analysis, recommendations, file inventories, and recovery procedures do not replace implementation deliverables. Do not claim repository changes were applied unless they actually were.
+
+**Required output:** File inventory → Traceability matrix → Complete file contents → Validation results → Completion status.
 
 ---
 
-### 4. **Complete Step-By-Step Runbook**
+4. **Complete Step-By-Step Runbook**
 
 * Generate the complete runbook **directly in this conversation**.
 * **Do not create or generate a file.**
