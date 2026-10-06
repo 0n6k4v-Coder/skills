@@ -1488,12 +1488,28 @@ I will launch two terminal so you can present me seperately command for both ter
 # GitHub Connector Convention
 
 1. **Pin the target:** Always specify `owner/repo` and the exact branch or commit SHA. Never assume the default branch.
-2. **Explore before editing:** Inspect repository metadata, the file tree, related source files, tests, and workflows before proposing changes.
-3. **Search, then fetch:** Use code search to locate symbols and dependencies; use `fetch_file` for authoritative file contents.
-4. **Read large files in chunks:** Use `start_line` and `end_line` with overlapping ranges when needed. Track line ranges and verify completeness before treating content as a full file.
-5. **Trace cross-file dependencies:** Check callers, imports, configuration, tests, and deployment files before changing interfaces.
-6. **Preserve existing code:** Make targeted edits. Fetch the latest file and its SHA before updating; never overwrite based on partial content.
-7. **Write safely:** Create a working branch, apply sequential updates, inspect the resulting diff, and use a pull request for review. Never force-update or merge without explicit authorization.
-8. **Verify honestly:** Inspect CI runs, job logs, and commit statuses. Clearly distinguish passed, failed, pending, unavailable, and not run.
-9. **Deliver evidence:** Report the exact branch/commit, files changed, complete-file versus partial excerpts, verification results, and any connector limitations. Never invent file contents, test results, or download links.
+2. **Explore before editing:** Inspect repository metadata, the target ref, the file tree, related source files, tests, workflows, and relevant configuration before proposing changes.
+3. **Search, then fetch:** Use code search to locate symbols and dependencies; use `fetch_file` to retrieve authoritative file contents. Verify that retrieved content belongs to the intended repository and ref.
+4. **Read large files in chunks:** Use `start_line` and `end_line` with overlapping ranges when needed. Track line ranges and verify completeness before treating retrieved content as a full file.
+5. **Trace cross-file dependencies:** Check callers, imports, configuration, tests, workflows, deployment files, and relevant interfaces before changing code.
+6. **Preserve existing code:** Make targeted edits. Fetch the latest target file and its blob SHA before updating. Never overwrite a file based on partial content or a stale revision.
+7. **Write safely:** Create a working branch from the pinned base revision when authorized. Apply sequential updates, inspect the resulting diff, and use a pull request for review. Never force-update, merge, or overwrite unrelated work without explicit authorization.
+8. **Verify repository operations:** Check the resulting branch/ref, commit SHA, changed-file list, diff, and commit or pull-request status. Inspect CI runs and job logs when available. Clearly distinguish passed, failed, pending, unavailable, and not run.
+9. **Respect connector capabilities and permissions:** Verify that the required GitHub operations are supported and authorized before relying on them. Do not assume that read access implies write access, or that connector access provides a local checkout or execution environment.
+10. **Deliver repository evidence:** Report the exact repository, base and resulting refs, files changed, relevant SHAs, review/CI status, and any connector limitations. Never invent file contents, repository state, test results, or links.
+
+# ChatGPT Web Browser Runtime Convention
+
+1. **Probe runtime capabilities first:** Before implementation, determine which available tools can read and write local files, execute shell commands, run tests, access the network, create artifacts, and verify downloadable paths. Distinguish tool availability from successful execution.
+2. **Separate browser access from execution:** Do not assume that the ChatGPT web browser, web search, or a connected external service provides shell access, a local filesystem, a writable project workspace, or permission to execute code.
+3. **Establish a complete working source:** Prefer a complete local checkout or a verified, materialized source archive. If direct cloning or network access fails, try supported alternatives such as retrieving source files through an authorized connector and materializing them locally. Track the exact base revision and file completeness.
+4. **Never treat excerpts as complete files:** Retrieved snippets or partial file ranges are evidence for inspection, not substitutes for full source files. Do not reconstruct or replace files from incomplete excerpts. If only partial content is available, limit changes to what can be verified or explicitly report the blocker.
+5. **Use a capability-matched fallback:** If the preferred workflow is unavailable, try another supported workflow before concluding that the task is blocked. Do not assume that a tool can transfer data into another tool's runtime; verify the transfer mechanism and resulting files.
+6. **Validate in stages:** Where supported, validate patch context, syntax, formatting, static checks, focused tests, broader tests, and integration behavior. Run checks only when the required source, dependencies, and execution capabilities are available.
+7. **Report verification honestly:** Distinguish code inspection from executed checks. Mark each check as passed, failed, blocked, or not run, and provide the evidence or exact limitation. Never claim that code runs or tests pass without execution evidence.
+8. **Preserve the target environment:** Check runtime versions, dependency constraints, environment variables, filesystem paths, ports, permissions, and external-service assumptions. Do not silently substitute versions or configurations that could change behavior.
+9. **Create and verify deliverables:** Prefer complete implementation files or a usable patch/archive, accompanied by a change summary and verification report. Verify that an artifact exists at the exact path before sharing a download link. Never invent or reuse an unverified path.
+10. **Keep execution and remote changes separate:** Creating local files, executing tests, and modifying a remote repository are distinct operations. Do not commit, push, open a pull request, merge, or change remote state unless explicitly authorized.
+11. **State blockers precisely:** If the runtime cannot complete an operation, identify the missing capability, the checks that remain unperformed, and the best usable alternative. Do not describe a partially completed implementation as finished.
+12. **Close the task with evidence:** Summarize the deliverable, exact base revision, files changed, validation results, unresolved risks, and any remaining manual steps. Clearly state whether the task is complete, partially complete, or blocked.
 ```
