@@ -1876,3 +1876,12 @@ If the codebase genuinely lacks the implementation, logic, or component asked ab
 ### 5. Code Over Documentation
 Do not blindly trust documentation, comments, or external references—they may be outdated or obsolete. Always verify against the active executable code and full repository implementation.
 ```
+---
+
+```
+Using GitHub for reading this skill directly: [https://github.com/0n6k4v-Coder/skills/blob/master/0n6k4v/design-to-figma/SKILL.md](https://github.com/0n6k4v-Coder/skills/blob/master/0n6k4v/design-to-figma/SKILL.md)
+
+Then:
+- Propose me  the seperated commit message to multi related group.
+- commit only don't push it yet.
+```
