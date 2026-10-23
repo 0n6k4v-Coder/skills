@@ -1,10 +1,10 @@
 # AI Agent Skills Collection
 
-> **Last Updated:** 2026-09-26          
+> **Last Updated:** 2026-10-23
 > **Purpose:** A curated collection of reusable `SKILL.md` definitions for AI agents and agentic coding systems.          
 > **Compatibility:** Framework-agnostic — designed to be usable across Hermes Agent, Claude Code, Codex, OpenCode, Cursor, and other AI agent runtimes that support `SKILL.md`-style skills.          
-> **Categories:** [Figma](#figma-skills) • [Railway](#railway-skills) • [Matt Pocock](#matt-pocock-skills) • [0n6k4v](#0n6k4v-skills) • [Playwright CLI](#playwright-cli-skills) • [Google](#google-skills) • [Next.js](#nextjs-skills)          
-> **Total Skills:** 63 (35 Figma + 1 Railway + 3 Matt Pocock + 11 0n6k4v + 1 Playwright CLI + 9 Google + 3 Next.js)
+> **Categories:** [Figma](#figma-skills) • [Railway](#railway-skills) • [Matt Pocock](#matt-pocock-skills) • [0n6k4v](#0n6k4v-skills) • [Playwright CLI](#playwright-cli-skills) • [Google](#google-skills) • [Next.js](#nextjs-skills) • [Cloudflare](#cloudflare-skills) • [PStack](#pstack-skills)
+> **Total Skills:** 65 (35 Figma + 1 Railway + 3 Matt Pocock + 11 0n6k4v + 1 Playwright CLI + 9 Google + 3 Next.js + 1 Cloudflare + 1 PStack)
 
 ---
 
@@ -41,6 +41,8 @@ The collection includes both:
 | **Google (Modern Web Guidance)** | https://github.com/GoogleChrome/modern-web-guidance | Modern web development and Chrome extension guidance |
 | **Google (Chrome DevTools MCP)** | https://github.com/ChromeDevTools/chrome-devtools-mcp/tree/main/skills | 7 Chrome DevTools debugging, performance, and automation skills |
 | **Next.js (Vercel)** | https://github.com/vercel/next.js/tree/canary/skills | 3 skills from the Next.js canary branch |
+| **Cloudflare (Security Audit)** | https://github.com/cloudflare/security-audit-skill/tree/main/skills/security-audit | Security-audit skill and supporting validators |
+| **Cursor (PStack)** | https://github.com/cursor/plugins/tree/main/pstack | Technical-writing skill from the Cursor plugin collection |
 | **Additional Upstream Repositories** | Various | See individual category tables for exact source locations |
 
 ---
@@ -122,17 +124,45 @@ skills/
 │   ├── SKILL.md
 │   └── references/
 │
-└── next.js/                ← 3 skills
-     ├── next-cache-components-adoption/
-     │   ├── SKILL.md
-     │   └── references/
-     │        └── per-page-decisions.md
-     ├── next-cache-components-optimizer/
-     │   ├── SKILL.md
-     │   ├── instant-nav-loop.md
-     │   └── ppr-loop.md
-     └── next-dev-loop/
-          └── SKILL.md
+├── next.js/                ← 3 skills
+│    ├── next-cache-components-adoption/
+│    │   ├── SKILL.md
+│    │   └── references/
+│    │        └── per-page-decisions.md
+│    ├── next-cache-components-optimizer/
+│    │   ├── SKILL.md
+│    │   ├── instant-nav-loop.md
+│    │   └── ppr-loop.md
+│    └── next-dev-loop/
+│         └── SKILL.md
+│
+├── pstack/                 ← 1 skill
+│    └── technical-writing/
+│         └── SKILL.md
+│
+└── cloudflare/              ← 1 skill
+     └── security-audit/
+          ├── SKILL.md
+          ├── AI-AND-LLM.md
+          ├── ATTACK-CLASSES.md
+          ├── CLIENT-SIDE.md
+          ├── CLOUD-AND-DEPLOYMENT.md
+          ├── DATA-ISOLATION-AND-LIFECYCLE.md
+          ├── DESKTOP-MOBILE-AND-LOCAL-IPC.md
+          ├── HUNTING.md
+          ├── MEMORY-SAFETY-AND-BINARY.md
+          ├── PROTOCOLS-RPC-AND-MESSAGING.md
+          ├── RECONNAISSANCE.md
+          ├── RESOURCE-EXHAUSTION-AND-AVAILABILITY.md
+          ├── SUPPLY-CHAIN-AND-RELEASE.md
+          ├── VALIDATION-AND-REPORTING.md
+          ├── WEB-PROTOCOL-AND-AUTH.md
+          ├── report-schema.json
+          ├── validate-coverage-ledger.cjs
+          ├── validate-coverage-ledger.test.cjs
+          ├── validate-findings.cjs
+          ├── validate-findings.test.cjs
+          └── LICENSE
 ```
 
 ---
@@ -257,6 +287,26 @@ Source: [vercel/next.js](https://github.com/vercel/next.js/tree/canary/skills) (
 | `next-cache-components-adoption/` | `skills/next-cache-components-adoption/` | `next-cache-components-adoption` — Guidance for adopting Cache Components on a per-page basis |
 | `next-cache-components-optimizer/` | `skills/next-cache-components-optimizer/` | `next-cache-components-optimizer` — Cache Components optimization workflows |
 | `next-dev-loop/` | `skills/next-dev-loop/` | `next-dev-loop` — Development workflow guidance for Next.js |
+
+---
+
+## Cloudflare Skills (1 skill)
+
+Source: [cloudflare/security-audit-skill](https://github.com/cloudflare/security-audit-skill/tree/main/skills/security-audit)
+
+| Skill Directory | Source Path | Skills Included |
+| ------------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cloudflare/security-audit/` | `skills/security-audit/` | `security-audit` — Orchestrates multi-phase repository security audits with reconnaissance, coverage-led hunting, adversarial validation, structured findings, independent verification, and reporting |
+
+---
+
+## PStack Skills (1 skill)
+
+Source: [cursor/plugins — PStack](https://github.com/cursor/plugins/tree/main/pstack)
+
+| Skill Directory | Source Path | Skills Included |
+| ------------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
+| `pstack/technical-writing/` | `pstack/skills/technical-writing/` | `technical-writing` — Applies Diátaxis, Google developer style, STE instruction rules, and Global English for clear technical documentation |
 
 ---
 
@@ -397,7 +447,9 @@ Current inventory:
 | Playwright CLI | 1 |
 | Google | 9 |
 | Next.js | 3 |
-| **Total** | **63** |
+| Cloudflare | 1 |
+| PStack | 1 |
+| **Total** | **65** |
 
 The current repository default branch is `master`.
 
@@ -439,7 +491,7 @@ The collection may grow or change as useful skills are identified, upstream proj
 
 ## Summary
 
-This repository currently contains **63 skills** across **7 categories**:
+This repository currently contains **65 skills** across **9 categories**:
 
 * **35 Figma skills**
 * **1 Railway skill**
@@ -448,6 +500,8 @@ This repository currently contains **63 skills** across **7 categories**:
 * **1 Playwright CLI skill**
 * **9 Google skills**
 * **3 Next.js skills**
+* **1 Cloudflare security-audit skill**
+* **1 PStack technical-writing skill**
 
 The collection is designed to provide reusable, focused instructions for AI agents across design, development, debugging, automation, documentation, and agent-operation workflows.
 
