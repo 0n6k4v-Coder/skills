@@ -1879,7 +1879,7 @@ Do not blindly trust documentation, comments, or external references—they may 
 ---
 
 ```
-Using GitHub for reading this skill directly: [https://github.com/0n6k4v-Coder/skills/blob/master/0n6k4v/design-to-figma/SKILL.md](https://github.com/0n6k4v-Coder/skills/blob/master/0n6k4v/design-to-figma/SKILL.md)
+Using GitHub for reading this skill directly: https://github.com/0n6k4v-Coder/skills/blob/master/0n6k4v/git-auto-commit-push/SKILL.md
 
 Then:
 - Propose me  the seperated commit message to multi related group.
