@@ -1885,3 +1885,10 @@ Then:
 - Propose me  the seperated commit message to multi related group.
 - commit only don't push it yet.
 ```
+
+---
+
+```text
+Variable naming conventions:
+- Use variable names that are clear, direct, simple, unambiguous, single-meaning, and concise.
+```
