@@ -1892,3 +1892,7 @@ Then:
 Variable naming conventions:
 - Use variable names that are clear, direct, simple, unambiguous, single-meaning, and concise.
 ```
+
+```text
+Every single file and every single line of code you're going to produce must according to latest official document and latest industry standard deep research finding.
+```
