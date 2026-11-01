@@ -1896,3 +1896,20 @@ Variable naming conventions:
 ```text
 Every single file and every single line of code you're going to produce must according to latest official document and latest industry standard deep research finding.
 ```
+
+```text
+# Convert <INT-ID>
+
+## Required Steps
+1. **Understand the codebase:** Use all available Everything MCP App Connector tools to connect to the `everything-mcp` sandbox and inspect the source code. Understand the overall architecture, components, and existing implementation.
+2. **Review the intent:** Read `/docs/intent.md` and identify the requirements, goals, and constraints.
+3. **Research the technology stack:** Consult the latest official documentation for all relevant technologies.
+4. **Research industry standards:** Identify and review the latest applicable industry standards, specifications, and best practices.
+5. **Produce design documents:** Create clear, complete, technically validated, and implementation-ready design documents aligned with the codebase, intent, technology documentation, and industry standards.
+
+## Required Skill
+- [Technical Writing Skill](https://github.com/0n6k4v-Coder/skills/blob/master/pstack/technical-writing/SKILL.md)
+
+## Reference
+- [The AI-Native SDLC Playbook](https://claude.com/resources/articles/the-ai-native-sdlc-playbook)
+```
