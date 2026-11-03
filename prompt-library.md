@@ -1913,3 +1913,72 @@ Every single file and every single line of code you're going to produce must acc
 ## Reference
 - [The AI-Native SDLC Playbook](https://claude.com/resources/articles/the-ai-native-sdlc-playbook)
 ```
+
+```
+# Implementation Convention
+
+## 1. Environment and Tooling
+1. **Work Directly in the Target Environment**  
+   Use the [$everything-mcp-app-connector](app://asdk_app_6ac4a4c35b3481919f76cece3974c44b) to connect to the `everything-mcp` sandbox and perform all relevant research, implementation, testing, and verification directly within that environment.
+2. **Use the Appropriate Tools**  
+   Prefer the tools and capabilities available in the target environment. Avoid unnecessary workarounds, duplicated effort, or manual steps when a suitable tool is available.
+
+## 2. Research and Standards Compliance
+1. **Research the Technology Stack**  
+   Consult the latest applicable official documentation for every relevant technology, framework, library, API, and development tool before implementation.
+2. **Research Industry Standards**  
+   Identify and review the latest applicable industry standards, specifications, security guidance, and engineering best practices relevant to the task.
+3. **Apply Research Findings Consistently**  
+   Every file, implementation decision, and line of code produced must be consistent with verified official documentation and applicable industry standards.
+4. **Resolve Conflicts Explicitly**  
+   When requirements, official documentation, and industry standards appear to conflict, investigate the discrepancy, prioritize applicable normative requirements, and document the rationale for the chosen approach.
+5. **Verify Currency and Applicability**  
+   Confirm that referenced documentation and standards are current and applicable to the project's actual technology versions and constraints. Do not assume that the newest available version is automatically compatible with the project.
+
+## 3. Implementation and Code Quality
+1. **Follow Established Project Conventions**  
+   Inspect and follow the existing project structure, architecture, coding standards, dependency constraints, and testing practices unless an approved change is necessary.
+2. **Use Clear Naming Conventions**  
+   Choose variable, function, class, module, and file names that are:
+   - Clear and direct.
+   - Simple and concise.
+   - Unambiguous and easy to understand.
+   - Consistent with the naming conventions of the language and project.
+   - Focused on one meaning and one responsibility.
+3. **Prefer Maintainable Solutions**  
+   Write code that is readable, testable, maintainable, and appropriately modular. Avoid unnecessary complexity, duplicated logic, speculative abstractions, and unrelated changes.
+4. **Preserve Existing Contracts**  
+   Maintain established interfaces, API behavior, compatibility requirements, and security boundaries unless the task explicitly authorizes changing them.
+5. **Keep Changes Within Scope**  
+   Modify only the files and components required by the task. Respect documented restrictions and avoid introducing unnecessary dependencies or unrelated refactoring.
+
+## 4. Execution Convention
+1. **Continue Until Complete**  
+   Complete all requested tasks and deliverables, including required documentation, implementation, testing, and verification, before concluding.
+2. **Act Proactively**  
+   Use available tools and resources to investigate issues, resolve blockers, validate assumptions, and make meaningful progress without unnecessary user intervention.
+3. **Avoid Premature Stopping**  
+   Do not stop after planning, research, or partial implementation when further meaningful work is possible. Continue through the remaining steps that can be completed safely and within the authorized scope.
+4. **Follow Dependencies and Acceptance Criteria**  
+   Respect task dependencies, implementation order, approval gates, and defined acceptance criteria. Do not bypass required prerequisites merely to accelerate execution.
+5. **Verify Before Concluding**  
+   Validate the final result against the original requirements, design decisions, applicable standards, and acceptance criteria. Run relevant tests, static checks, and other available verification procedures.
+6. **Distinguish Verified Results from Assumptions**  
+   Record what was implemented, what was tested, the verification results, and any remaining uncertainty. A successful command or a completed edit alone does not prove that the implementation is correct.
+7. **Report Blockers Transparently**  
+   Report genuine blockers, environmental limitations, unavailable dependencies, failed checks, and unverified requirements honestly. Never claim that incomplete or unverified work is complete.
+
+## 5. Completion and Handover
+Before concluding, ensure that:
+- [ ] All requested deliverables have been addressed.
+- [ ] Relevant official documentation and industry standards have been researched.
+- [ ] Implementation follows project conventions and applicable requirements.
+- [ ] Naming, readability, maintainability, and compatibility have been reviewed.
+- [ ] Relevant tests and verification checks have been executed where possible.
+- [ ] Results and supporting evidence have been recorded.
+- [ ] Outstanding issues, blockers, and unverified items have been documented.
+- [ ] The final report accurately reflects the actual implementation status.
+
+**Completion Rule:**  
+Declare the task complete only when its required deliverables and acceptance criteria have been satisfied and the results have been verified to the extent possible. If any requirement remains unmet, clearly identify the outstanding work and its reason.
+```
