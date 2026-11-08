@@ -1986,11 +1986,12 @@ Declare the task complete only when its required deliverables and acceptance cri
 ---
 
 ```
-# Resovle all of the findings issues.
-- Review all of the findings issues that we've found
-- Conduct a deep research on latest technology stack official documents.
-- Conduct a deep research on latest current industry standards documents.
-- Using all of the deep research findings to resolved all of those findings issues.
+# Resolve All Identified Issues
+- Review all identified findings and issues.
+- Research the latest official technology stack documentation.
+- Research current industry standards and best practices.
+- Apply the research findings to resolve all identified issues.
+- Verify that every issue is fully resolved and compliant with applicable standards.
 ```
 
 ---
