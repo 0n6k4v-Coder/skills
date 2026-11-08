@@ -1982,3 +1982,18 @@ Before concluding, ensure that:
 **Completion Rule:**  
 Declare the task complete only when its required deliverables and acceptance criteria have been satisfied and the results have been verified to the extent possible. If any requirement remains unmet, clearly identify the outstanding work and its reason.
 ```
+
+---
+
+```
+# Resovle all of the findings issues.
+- Conduct a deep research on latest technology stack official documents.
+- Conduct a deep research on latest current industry standards documents.
+- Using all of the deep research findings to resolved all of those findings issues.
+```
+
+---
+
+```
+Perform a strict independence review on 
+```
