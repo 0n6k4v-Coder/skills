@@ -1917,13 +1917,7 @@ Every single file and every single line of code you're going to produce must acc
 ```
 # Implementation Convention
 
-## 1. Environment and Tooling
-1. **Work Directly in the Target Environment**  
-   Use the [$everything-mcp-app-connector](app://asdk_app_6ac4a4c35b3481919f76cece3974c44b) to connect to the `everything-mcp` sandbox and perform all relevant research, implementation, testing, and verification directly within that environment.
-2. **Use the Appropriate Tools**  
-   Prefer the tools and capabilities available in the target environment. Avoid unnecessary workarounds, duplicated effort, or manual steps when a suitable tool is available.
-
-## 2. Research and Standards Compliance
+## 1. Research and Standards Compliance
 1. **Research the Technology Stack**  
    Consult the latest applicable official documentation for every relevant technology, framework, library, API, and development tool before implementation.
 2. **Research Industry Standards**  
@@ -1935,7 +1929,7 @@ Every single file and every single line of code you're going to produce must acc
 5. **Verify Currency and Applicability**  
    Confirm that referenced documentation and standards are current and applicable to the project's actual technology versions and constraints. Do not assume that the newest available version is automatically compatible with the project.
 
-## 3. Implementation and Code Quality
+## 2. Implementation and Code Quality
 1. **Follow Established Project Conventions**  
    Inspect and follow the existing project structure, architecture, coding standards, dependency constraints, and testing practices unless an approved change is necessary.
 2. **Use Clear Naming Conventions**  
@@ -1952,7 +1946,7 @@ Every single file and every single line of code you're going to produce must acc
 5. **Keep Changes Within Scope**  
    Modify only the files and components required by the task. Respect documented restrictions and avoid introducing unnecessary dependencies or unrelated refactoring.
 
-## 4. Execution Convention
+## 3. Execution Convention
 1. **Continue Until Complete**  
    Complete all requested tasks and deliverables, including required documentation, implementation, testing, and verification, before concluding.
 2. **Act Proactively**  
@@ -1968,7 +1962,7 @@ Every single file and every single line of code you're going to produce must acc
 7. **Report Blockers Transparently**  
    Report genuine blockers, environmental limitations, unavailable dependencies, failed checks, and unverified requirements honestly. Never claim that incomplete or unverified work is complete.
 
-## 5. Completion and Handover
+## 4. Completion and Handover
 Before concluding, ensure that:
 - [ ] All requested deliverables have been addressed.
 - [ ] Relevant official documentation and industry standards have been researched.
