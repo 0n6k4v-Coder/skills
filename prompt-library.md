@@ -1993,3 +1993,30 @@ Declare the task complete only when its required deliverables and acceptance cri
 ```
 Perform a strict independence review on 
 ```
+
+```
+### **Business-Domain-Aligned Code Convention**
+
+**Core Principle**
+> Low-Level Code Structure must reflect High-Level Business Logic with 100% alignment. The Business Domain owns and defines the vocabulary of the codebase.
+
+**Naming & Structure Rules**
+1. **Directory Names** — Represent Business Domains, Concepts, or Capabilities.
+2. **File Names** — Represent Business Responsibilities or Actions.
+3. **Class Names** — Represent Business Entities, Roles, or Use Cases.
+4. **Function Names** — Use verbs that clearly express Business Actions and Concepts.
+5. **Method Names** — Express behavior using consistent Business Vocabulary.
+6. **Vocabulary Consistency** — Use the same domain terminology across all architectural levels. Do not replace business terms with unrelated technical synonyms.
+7. **Business Flow Alignment** — Directory and file structures should reflect business workflows, relationships, and responsibilities.
+8. **Single Responsibility** — Every directory, file, class, function, and method must have a clear, well-defined responsibility.
+9. **Technical Abstraction** — Separate technical implementation details from business concepts without obscuring business meaning.
+10. **Traceability** — Every business concept must be traceable through the structure: Business Concept → Directory → File → Class → Function → Method.
+11. **Explicit Naming** — Avoid ambiguous names such as `Manager`, `Handler`, `Processor`, `Utils`, and `Common` unless their responsibilities are explicitly defined.
+12. **Behavior Preservation** — Structural and naming changes must preserve existing business logic and observable behavior.
+13. **Incremental Migration** — Refactor incrementally, starting with the CLI and migrating one business flow at a time.
+14. **Current-to-Target Mapping** — Map existing responsibilities to their intended target names and locations before making changes.
+15. **Self-Documenting Structure** — The directory tree and naming conventions should communicate the system's business domain and workflows without requiring additional explanations.
+
+**Goal**
+> Anyone should be able to understand the Business Domain, system responsibilities, and Business Flows by reading the codebase structure and names—without having to mentally translate technical abstractions back into business concepts.
+```
