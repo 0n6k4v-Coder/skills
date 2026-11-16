@@ -2020,3 +2020,23 @@ Perform a strict independence review on
 **Goal**
 > Anyone should be able to understand the Business Domain, system responsibilities, and Business Flows by reading the codebase structure and names—without having to mentally translate technical abstractions back into business concepts.
 ```
+
+```
+### **Anti Pass-through Function / Layer Convention**
+
+**Core Principle**
+> Every function, class, and architectural layer must own a distinct, meaningful responsibility. Never introduce an abstraction that merely forwards calls or wraps another component without adding value.
+
+**Rules**
+1. **No Pass-through Functions** — Functions must perform meaningful business logic, validation, transformation, orchestration, or policy enforcement. Do not create functions that only delegate calls.
+2. **No Pass-through Layers** — Every architectural layer must have a distinct responsibility. Do not add layers solely to forward requests or dependencies.
+3. **No Redundant Wrappers** — Avoid unnecessary adapters, facades, proxies, and wrappers that do not provide meaningful behavior.
+4. **Single Responsibility** — Each component must own one clearly defined responsibility without duplicating another component's responsibility.
+5. **Minimum Necessary Abstraction** — Introduce abstractions only when justified by actual architectural or business requirements.
+6. **Direct Collaboration** — Components should communicate through the shortest appropriate dependency path without unnecessary intermediaries.
+7. **Justify Every Layer** — Every layer must demonstrate its unique purpose, ownership, and architectural value.
+8. **Refactor Redundancy** — Remove existing pass-through functions, layers, and unnecessary indirection when migrating to the target architecture.
+
+**Goal**
+> Achieve the simplest architecture that preserves clear business ownership, separation of concerns, testability, and maintainability without redundant indirection.
+```
