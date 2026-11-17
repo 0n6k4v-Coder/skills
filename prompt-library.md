@@ -2040,3 +2040,24 @@ Perform a strict independence review on
 **Goal**
 > Achieve the simplest architecture that preserves clear business ownership, separation of concerns, testability, and maintainability without redundant indirection.
 ```
+
+```
+## **Meaningful Code Comment Convention**
+
+**Core Principle**
+> Comments must explain essential context that cannot be clearly expressed through code. Code remains the single source of truth.
+
+**Rules**
+1. **Explain Why, Not What** — Explain intent, rationale, and constraints. Never narrate obvious code behavior.
+2. **Avoid Redundancy** — Do not repeat information already clear from names, types, or implementation.
+3. **Preserve Critical Context** — Document essential business rules, security boundaries, concurrency constraints, and non-obvious behavior.
+4. **No Historical Noise** — Do not include migration notes, work-item IDs, temporary instructions, or development history.
+5. **No Agent Instructions** — Comments must describe system facts, not direct or bias future AI agents.
+6. **Stay Accurate** — Comments must reflect current implementation. Remove or update stale comments.
+7. **Prefer Enforcement** — Use types, validation, tests, and static analysis instead of comments whenever possible.
+8. **Preserve Tooling Directives** — Never remove comments required by compilers, interpreters, linters, or other tools.
+9. **Keep It Concise** — Every comment must provide meaningful information. Avoid unnecessary comments.
+
+**Goal**
+> Keep code self-explanatory. Use comments only when they add essential context, improve correctness, or prevent misunderstanding.
+```
