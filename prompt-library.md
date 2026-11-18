@@ -2061,3 +2061,12 @@ Perform a strict independence review on
 **Goal**
 > Keep code self-explanatory. Use comments only when they add essential context, improve correctness, or prevent misunderstanding.
 ```
+
+```
+**Problem / Issue / Failure / Error / Defect Investigation Convention:**
+- Read the entire codebase.
+- Identify and investigate the root cause.
+- Research the latest official documentation for the technology stack.
+- Research current industry standards and best practices.
+- Present the findings in the conversation.
+```
