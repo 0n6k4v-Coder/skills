@@ -2070,3 +2070,14 @@ Perform a strict independence review on
 - Research current industry standards and best practices.
 - Present the findings in the conversation.
 ```
+
+```
+## **Testing Rules**
+1. **Batch Execution:** Split large test suites into manageable batches based on scope and dependencies.
+2. **Announce Test Plan:** Before testing, state the total number of batches, tests in each batch, and the reason for grouping them.
+3. **Proceed Immediately:** Start testing immediately after announcing the plan. Do not wait for approval.
+4. **Report Each Batch:** Report each batch's results immediately after completion. Do not wait for approval before continuing.
+5. **Complete All Tests:** Continue executing and reporting all planned batches until testing is complete.
+6. **Do Not Fix Issues:** Never modify source code, tests, configurations, or related files to fix failures. Only collect evidence and report findings.
+7. **Individual Failure Reporting:** Report every Defect, Failed test, or Error as a separate Markdown bullet point. One issue per bullet. Never combine, group, summarize, or omit issues. Include a clear description and relevant evidence for each issue.
+```
