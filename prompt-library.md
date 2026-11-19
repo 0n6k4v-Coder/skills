@@ -2117,3 +2117,20 @@ Perform a strict independence review on
 - Require all affected tests and static checks to pass.
 - Resolve all unexplained legacy references and contract mismatches.
 ```
+```
+**Anti-Pattern: List Length Anchoring** (Content-first, count-second.)
+
+Do not assume, reuse, or replicate the number of items from previous lists.
+
+Determine each list's contents and scope independently based on the actual context, requirements, and objectives of the task.
+
+Follow a **content-first, count-second** approach:
+1. Identify all items genuinely required by the context.
+2. Determine the appropriate scope and level of granularity.
+3. Generate only relevant and necessary items.
+4. Let the final item count emerge naturally from the content.
+
+**Never decide the target item count in advance and force the content to fill it.**
+
+Prioritize contextual relevance and completeness over numerical consistency. The number of items must be a consequence of the task's requirements, not an arbitrary target or a pattern inherited from previous responses.
+```
