@@ -2081,3 +2081,25 @@ Perform a strict independence review on
 6. **Do Not Fix Issues:** Never modify source code, tests, configurations, or related files to fix failures. Only collect evidence and report findings.
 7. **Individual Failure Reporting:** Report every Defect, Failed test, or Error as a separate Markdown bullet point. One issue per bullet. Never combine, group, summarize, or omit issues. Include a clear description and relevant evidence for each issue.
 ```
+
+```
+### **MCP Server & Business Application Separation Convention**
+
+**Core Principle**
+> MCP Server and Business Application must be fully isolated, independently developed, deployed, executed, tested, and maintained.
+
+**Rules**
+1. **Complete Isolation** — No shared runtime, lifecycle, or internal implementation dependency.
+2. **Independent Deployment** — Deploy, upgrade, and configure each application separately.
+3. **Environment Agnostic** — Both applications must support Cloud and Local / On-Premise deployment.
+4. **Runtime Independence** — Each application must run without requiring the other.
+5. **Fault Isolation** — Failure, restart, or downtime of one application must not affect the other.
+6. **Parallel Development** — Both applications must be independently developed without blocking or modifying each other.
+7. **Independent Testing** — Each application must have its own test suites and testing lifecycle.
+8. **Independent Debugging** — Each application must support isolated logging, monitoring, and debugging.
+9. **Contract-Based Integration** — Communication must use explicit, versioned contracts without sharing internal implementation.
+10. **Clear Responsibility** — MCP Server owns MCP Protocol. Business Application owns all Business Logic and Application State.
+
+**Goal**
+> Achieve complete separation between MCP Server and Business Application, enabling independent development, deployment, execution, testing, debugging, and failure isolation across any supported environment.
+```
