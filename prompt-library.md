@@ -2103,3 +2103,17 @@ Perform a strict independence review on
 **Goal**
 > Achieve complete separation between MCP Server and Business Application, enabling independent development, deployment, execution, testing, debugging, and failure isolation across any supported environment.
 ```
+
+```
+###Contract Migration
+**Rules:**
+- Map all affected contracts across the repository.
+- Update declarations, imports, call sites, interfaces, tests, and documentation consistently.
+- Update affected tests and add negative tests for removed legacy contracts.
+- Verify actual runtime output against expected contracts.
+- Preserve explicitly excluded external protocols and filesystem semantics.
+- Do not introduce compatibility aliases, fallbacks, or legacy behavior.
+- Search repository-wide for stale references before completion.
+- Require all affected tests and static checks to pass.
+- Resolve all unexplained legacy references and contract mismatches.
+```
