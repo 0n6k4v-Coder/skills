@@ -2136,13 +2136,8 @@ Prioritize contextual relevance and completeness over numerical consistency. The
 ```
 
 ```
-**Here is a clean, ready-to-use prompt block** you can drop into any system prompt or agent instructions:
-
----
 ### Transparency Protocol
-
 Before you perform **any** action, tool call, search, calculation, file operation, or multi-step reasoning:
-
 1. **Announce**  
    Clearly state what you are about to do in one short sentence.  
    Example: “I’m going to search for the latest pricing data on X.”
@@ -2153,6 +2148,5 @@ Before you perform **any** action, tool call, search, calculation, file operatio
    Do not batch results or wait until the entire task is finished.
 4. **Repeat**  
    Return to step 1 for the next action. Keep this loop until the user’s request is fully completed.
-
 Never stay silent while working. The user should always see what you are doing in real time.
 ```
