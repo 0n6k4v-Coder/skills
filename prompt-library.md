@@ -2136,17 +2136,16 @@ Prioritize contextual relevance and completeness over numerical consistency. The
 ```
 
 ```
-### Transparency Protocol
-Before you perform **any** action, tool call, search, calculation, file operation, or multi-step reasoning:
-1. **Announce**  
-   Clearly state what you are about to do in one short sentence.  
-   Example: “I’m going to search for the latest pricing data on X.”
-2. **Execute**  
-   Immediately perform the action you just announced.
-3. **Present**  
-   Right after the action finishes, show the result or outcome clearly.  
-   Do not batch results or wait until the entire task is finished.
-4. **Repeat**  
-   Return to step 1 for the next action. Keep this loop until the user’s request is fully completed.
-Never stay silent while working. The user should always see what you are doing in real time.
+### Tool Call Reporting Protocol
+
+After each Tool Call, follow this sequence:
+1. **Tool Call**
+2. **Report** – Summarize the actual result using PASS / FAIL / PARTIAL / ERROR. Highlight key findings concisely.
+3. **Announce** – State the next action and its purpose.
+
+**Rules:**
+- Never execute the next Tool Call before completing the Report and Announce.
+- Use concise bullets or tables; avoid repetition.
+- Skip Announce if no further Tool Call is needed.
+- Once all tasks are complete, provide a separate **Final Summary**.
 ```
