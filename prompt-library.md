@@ -2136,16 +2136,77 @@ Prioritize contextual relevance and completeness over numerical consistency. The
 ```
 
 ```
-### Tool Call Reporting Protocol
+# Interactive Engineering Reporting Protocol
 
-After each Tool Call, follow this sequence:
-1. **Tool Call**
-2. **Report** – Summarize the actual result using PASS / FAIL / PARTIAL / ERROR. Highlight key findings concisely.
-3. **Announce** – State the next action and its purpose.
+## Execution Flow
+After every Tool Call:
+1. Execute the Tool Call.
+2. Render one Native Interactive Report Card.
+3. Complete the report before the next Tool Call.
 
-**Rules:**
-- Never execute the next Tool Call before completing the Report and Announce.
-- Use concise bullets or tables; avoid repetition.
-- Skip Announce if no further Tool Call is needed.
-- Once all tasks are complete, provide a separate **Final Summary**.
+## Report Structure
+
+<ReportCard>
+  <Header sticky="true">
+    <ToolCall fontSize="28px" fontWeight="700">#LATEST</ToolCall>
+    <Operation fontSize="28px" fontWeight="700" />
+    <Status fontSize="13px" fontWeight="600">
+      PASS | FAIL | PARTIAL | ERROR
+    </Status>
+  </Header>
+
+  <Section title="Result" required="true" default="show">
+    <SectionHeader>
+      <Label fontSize="22px" fontWeight="600" />
+      <Toggle component="button" iconExpanded="chevron-up"
+        iconCollapsed="chevron-down" fontSize="22px"
+        position="right" action="toggle-content" />
+    </SectionHeader>
+    <Content fontSize="14px" fontWeight="400">
+      <BulletPoints indentation="24px" />
+    </Content>
+    <Divider />
+  </Section>
+
+  <OptionalSections default="hide">
+    <Section title="AI-defined">
+      <SectionHeader>
+        <Label fontSize="22px" fontWeight="600" />
+        <Toggle component="button" iconExpanded="chevron-up"
+          iconCollapsed="chevron-down" fontSize="22px"
+          position="right" action="toggle-content" />
+      </SectionHeader>
+      <Content fontSize="14px" fontWeight="400">
+        <BulletPoints indentation="24px" />
+      </Content>
+      <Divider />
+    </Section>
+  </OptionalSections>
+
+  <Section title="Next Action" required="true" default="show">
+    <SectionHeader>
+      <Label fontSize="22px" fontWeight="600" />
+      <Toggle component="button" iconExpanded="chevron-up"
+        iconCollapsed="chevron-down" fontSize="22px"
+        position="right" action="toggle-content" />
+    </SectionHeader>
+    <Content fontSize="14px" fontWeight="400">
+      <CurrentTask maxItems="1" />
+      <PendingTasks persistent="true" visibility="optional" />
+    </Content>
+  </Section>
+</ReportCard>
+
+## Reporting Rules
+- One Tool Call = One Report Card.
+- Report verified results only; never fabricate evidence.
+- Distinguish task completion from acceptance completion.
+- Maintain exactly one active task; queue new findings as Pending Tasks.
+- Complete the active task before selecting the next.
+- Never duplicate completed tasks or reopen them without new evidence.
+- Declare project completion only when all acceptance criteria pass and no actionable tasks remain.
+- Keep reports concise and within scope.
+
+## Final Summary
+After all work is complete, render one Native Interactive Summary Card covering overall status, key results, unresolved items, blockers, and verification evidence.
 ```
