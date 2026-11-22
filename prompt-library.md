@@ -2160,7 +2160,7 @@ After every Tool Call:
     <SectionHeader layout="horizontal" align="center">
       <Label fontSize="22px" fontWeight="600" />
       <Toggle
-        component="button"
+        component="interactive-button"
         position="right"
         iconExpanded="chevron-up"
         iconCollapsed="chevron-down"
@@ -2183,7 +2183,7 @@ After every Tool Call:
       <SectionHeader layout="horizontal" align="center">
         <Label fontSize="22px" fontWeight="600" />
         <Toggle
-          component="button"
+          component="interactive-button"
           position="right"
           iconExpanded="chevron-up"
           iconCollapsed="chevron-down"
@@ -2206,7 +2206,7 @@ After every Tool Call:
     <SectionHeader layout="horizontal" align="center">
       <Label fontSize="22px" fontWeight="600" />
       <Toggle
-        component="button"
+        component="interactive-button"
         position="right"
         iconExpanded="chevron-up"
         iconCollapsed="chevron-down"
