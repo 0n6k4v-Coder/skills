@@ -2091,7 +2091,7 @@ Perform a strict independence review on
 **Rules**
 1. **Complete Isolation** — No shared runtime, lifecycle, or internal implementation dependency.
 2. **Independent Deployment** — Deploy, upgrade, and configure each application separately.
-3. **Environment Agnostic** — Both applications must support Cloud and Local / On-Premise deployment.
+3. **Environment Agnostic** — Both applications must support Cloud and Local / On-Premise deployment across different cloud providers.
 4. **Runtime Independence** — Each application must run without requiring the other.
 5. **Fault Isolation** — Failure, restart, or downtime of one application must not affect the other.
 6. **Parallel Development** — Both applications must be independently developed without blocking or modifying each other.
@@ -2099,6 +2099,8 @@ Perform a strict independence review on
 8. **Independent Debugging** — Each application must support isolated logging, monitoring, and debugging.
 9. **Contract-Based Integration** — Communication must use explicit, versioned contracts without sharing internal implementation.
 10. **Clear Responsibility** — MCP Server owns MCP Protocol. Business Application owns all Business Logic and Application State.
+11. **Cross-Environment Communication** — Communication must support secure integration across Cloud, Local, and On-Premise environments without assuming direct network accessibility.
+12. **No Hidden Dependencies** — Neither application may depend on the other's internal services, filesystem, deployment pipeline, or runtime lifecycle.
 
 **Goal**
 > Achieve complete separation between MCP Server and Business Application, enabling independent development, deployment, execution, testing, debugging, and failure isolation across any supported environment.
