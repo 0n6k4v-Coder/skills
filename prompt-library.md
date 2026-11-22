@@ -2241,3 +2241,44 @@ After all work is complete, render one Native Interactive Summary Card covering 
 ```
 - Resolve all open questions through thorough investigation before providing any answer. Do not answer while significant uncertainties remain.
 ```
+
+```
+### **AI-Generated Test Verification Convention**
+
+**Core Principle**  
+> AI-generated tests create false confidence when tests are derived from the same assumptions as the implementation. High coverage ≠ correctness. Verification must remain as independent as possible, even when a single agent is used.
+
+**Rules**
+1. ** sequential Separation of Concerns (Single Agent)**  
+   Even with one agent, never generate production code and its tests in the same step from the same context.  
+   - First extract or define observable behaviors / edge cases.  
+   - Generate tests from those behaviors.  
+   - Only then implement (or adjust) the code to satisfy the tests.  
+   Prefer external sources of truth whenever available (tickets, existing behavior, production data, known examples).
+2. **Handle Missing Spec**  
+   When no formal spec or acceptance criteria exist:  
+   - Extract observable behavior and edge cases from current code, tickets, or production data.  
+   - Generate tests from the extracted behaviors.  
+   - Explicitly mark these tests as provisional.  
+   - Require human confirmation of intent before treating them as authoritative.
+3. **Prioritize Mutation Score**  
+   Use mutation score as the primary quality signal (target typically >60–70%). Coverage is secondary only.
+4. **Prefer Higher-Level Independent Tests**  
+   Maintain system-level, end-to-end, contract, or property-based tests.  
+   Minimize heavy mocking.  
+   These tests should be harder for the agent to game than pure unit tests.
+5. **Strict Review & Cleanup**  
+   Review every generated test with one question: “If the code violates intended behavior, will this test fail?”  
+   Delete tautological, mock-only, happy-path-only, or coverage-inflating tests.  
+   The agent must not modify existing tests solely to make them pass.
+
+**Anti-Patterns**  
+- Generating code and tests in one undifferentiated step  
+- High coverage + low mutation score  
+- Over-mocking that hides real failures  
+- Tests that only mirror the implementation or assert mock calls  
+- Changing tests just to force a green result
+
+**Goal**  
+> Even with a single agent, tests must provide independent evidence of correct behavior. When no formal spec exists, treat extracted behaviors as temporary and require explicit human validation of intent.
+```
