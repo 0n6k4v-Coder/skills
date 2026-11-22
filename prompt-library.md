@@ -2235,3 +2235,7 @@ After every Tool Call:
 ## Final Summary
 After all work is complete, render one Native Interactive Summary Card covering overall status, key results, unresolved items, blockers, and verification evidence.
 ```
+
+```
+- Resolve all open questions through thorough investigation before providing any answer. Do not answer while significant uncertainties remain.
+```
