@@ -2136,6 +2136,7 @@ Prioritize contextual relevance and completeness over numerical consistency. The
 ```
 
 ```
+
 # Interactive Engineering Reporting Protocol
 
 ## Execution Flow
@@ -2147,48 +2148,72 @@ After every Tool Call:
 ## Report Structure
 
 <ReportCard>
-  <Header sticky="true">
-    <ToolCall fontSize="28px" fontWeight="700">#LATEST</ToolCall>
-    <Operation fontSize="28px" fontWeight="700" />
+  <Header sticky="true" fontSize="28px" fontWeight="700">
+    <ToolCall>#LATEST</ToolCall>
+    <Operation />
     <Status fontSize="13px" fontWeight="600">
       PASS | FAIL | PARTIAL | ERROR
     </Status>
   </Header>
 
   <Section title="Result" required="true" default="show">
-    <SectionHeader>
+    <SectionHeader layout="horizontal" align="center">
       <Label fontSize="22px" fontWeight="600" />
-      <Toggle component="button" iconExpanded="chevron-up"
-        iconCollapsed="chevron-down" fontSize="22px"
-        position="right" action="toggle-content" />
+      <Toggle
+        component="button"
+        position="right"
+        iconExpanded="chevron-up"
+        iconCollapsed="chevron-down"
+        fontSize="22px"
+        action="toggle-content"
+        state="independent"
+      />
     </SectionHeader>
     <Content fontSize="14px" fontWeight="400">
       <BulletPoints indentation="24px" />
+      <Emphasis bold="allowed" italic="allowed" brackets="allowed" />
+      <Table allowed="true" />
     </Content>
-    <Divider />
   </Section>
 
+  <Divider position="between-sections" />
+
   <OptionalSections default="hide">
-    <Section title="AI-defined">
-      <SectionHeader>
+    <Section title="AI-defined" default="hide">
+      <SectionHeader layout="horizontal" align="center">
         <Label fontSize="22px" fontWeight="600" />
-        <Toggle component="button" iconExpanded="chevron-up"
-          iconCollapsed="chevron-down" fontSize="22px"
-          position="right" action="toggle-content" />
+        <Toggle
+          component="button"
+          position="right"
+          iconExpanded="chevron-up"
+          iconCollapsed="chevron-down"
+          fontSize="22px"
+          action="toggle-content"
+          state="independent"
+        />
       </SectionHeader>
       <Content fontSize="14px" fontWeight="400">
         <BulletPoints indentation="24px" />
+        <Emphasis bold="allowed" italic="allowed" brackets="allowed" />
+        <Table allowed="true" />
       </Content>
-      <Divider />
     </Section>
   </OptionalSections>
 
+  <Divider position="between-sections" />
+
   <Section title="Next Action" required="true" default="show">
-    <SectionHeader>
+    <SectionHeader layout="horizontal" align="center">
       <Label fontSize="22px" fontWeight="600" />
-      <Toggle component="button" iconExpanded="chevron-up"
-        iconCollapsed="chevron-down" fontSize="22px"
-        position="right" action="toggle-content" />
+      <Toggle
+        component="button"
+        position="right"
+        iconExpanded="chevron-up"
+        iconCollapsed="chevron-down"
+        fontSize="22px"
+        action="toggle-content"
+        state="independent"
+      />
     </SectionHeader>
     <Content fontSize="14px" fontWeight="400">
       <CurrentTask maxItems="1" />
