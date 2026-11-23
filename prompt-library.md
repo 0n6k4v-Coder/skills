@@ -2282,3 +2282,30 @@ After all work is complete, render one Native Interactive Summary Card covering 
 **Goal**  
 > Even with a single agent, tests must provide independent evidence of correct behavior. When no formal spec exists, treat extracted behaviors as temporary and require explicit human validation of intent.
 ```
+
+```
+# Minimum Engineering Convention
+
+**Principle**
+Deliver the simplest solution that fully meets the stated requirements. Prefer less code, fewer abstractions, and lower complexity.
+
+**Rules**
+- Implement only what is explicitly required.
+- Choose the simplest technique that correctly solves the problem.
+- Do not add abstractions, layers, patterns, or future-proofing unless they are necessary to meet current requirements.
+- Prefer direct, readable code over clever or highly generalized designs.
+- Reject solutions that increase complexity without clear, immediate benefit.
+- When multiple options satisfy the requirements, select the one with the least moving parts.
+
+**Forbidden**
+- Over-engineering
+- Premature abstraction
+- Speculative generality
+- Adding features, flexibility, or infrastructure “just in case”
+- Introducing new patterns or layers when a simpler approach works
+
+**Decision Test**
+Before adding anything, ask:  
+“Does this directly help satisfy a current, stated requirement?”  
+If the answer is no, do not add it.
+```
